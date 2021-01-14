@@ -1,4 +1,4 @@
-package AllClasses;
+package src.AllClasses;
 
 import javax.swing.ImageIcon;
 

@@ -1,4 +1,4 @@
-package AllClasses;
+package src.AllClasses;
 
 public class Supplier {
 
@@ -6,21 +6,10 @@ public class Supplier {
 
     public Supplier(String name, String location, String contact, String businessEmail)
     {
-        this.supplierID = "1";
         this.name = name;
         this.location = location;
         this.contact = contact;
         this.businessEmail = businessEmail;
-    }
-
-    public void deleteSupplier(String id)
-    {
-        // Will delete from database
-    }
-
-    public void deleteFireplace(String id)
-    {
-        // Will delete fireplace from database
     }
 
     public void updateName(String newName)
