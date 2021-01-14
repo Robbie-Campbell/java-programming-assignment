@@ -1,9 +1,17 @@
 package src.AllClasses;
 
+/*
+Author: Robbie Campbell
+Date: 14/01/2021
+Description:
+This class contains all of the information for a supplier, it also contains the methods needed to return the private variables in the database class
+*/
+
 public class Supplier {
 
-    private String supplierID, location, name, contact, businessEmail;
-
+    private String location, name, contact, businessEmail;
+    
+    // CONSTRUCTOR METHOD
     public Supplier(String name, String location, String contact, String businessEmail)
     {
         this.name = name;
@@ -12,37 +20,7 @@ public class Supplier {
         this.businessEmail = businessEmail;
     }
 
-    public void updateName(String newName)
-    {
-        this.name = newName;
-    }
-
-    public void updateLocation(String newLocation)
-    {
-        this.location = newLocation;
-    }
-
-    public void updateContact(String newContact)
-    {
-        this.contact = newContact;
-    }
-
-    public void updateBusinessEmail(String newEmail)
-    {
-        this.businessEmail = newEmail;
-    }
-
-    public String getAllSupplierInfo()
-    {
-        return String.format("Supplier ID:%s\nSupplier Name:%s\nSupplier Location:%s\nSupplier Contact No:%s\n" +
-                "Supplier Business Email:%s",this.supplierID, this.location, this.name, this.contact, this.businessEmail);
-    }
-
-    public String getSupplierId()
-    {
-        return this.supplierID;
-    }
-
+    // GETTER METHODS FOR EACH OF THE PRIVATE VARIABLES
     public String getLocation()
     {
         return this.location;

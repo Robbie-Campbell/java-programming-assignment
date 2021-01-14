@@ -1,90 +1,56 @@
 package src.AllClasses;
 
-import javax.swing.ImageIcon;
+/*
+Author: Robbie Campbell
+Date: 14/01/2021
+Description:
+The class which stores all of the information for the fireplace class, including the getter methouds for the private variables
+*/
 
 public class Fireplace {
 
-    private String itemId, description, itemName,image;
-    private Supplier supplier;
-    private int price, stock;
+    private String description, itemName, image;
+    private int price, stock, supplier;
 
-    public Fireplace(String itemName, int price, int stock, Supplier supplier)
+    // CONSTRUCTOR METHODS
+    public Fireplace(int supplier, String itemName, int price, int stock)
     {
-        this.itemId = "1";
         this.itemName = itemName;
         this.price = price;
-        this.description = "Please set an item description";
-        this.image = "Please set an item Image";
+        this.description = null;
+        this.image = null;
         this.stock = stock;
         this.supplier = supplier;
     }
 
-    public void deleteFireplace(String id)
-    {
-        // Will delete fireplace from database
-    }
-
-    public void updateName(String newName)
-    {
-        this.itemName = newName;
-    }
-
-    public void updatePrice(int price)
-    {
-        this.price = price;
-    }
-
-    public void updateStock(int stockTake)
-    {
-        this.stock -= stockTake;
-    }
-
-    public void setDescription(String description)
-    {
-        this.description = description;
-    }
-
-    public void setImage(String image)
-    {
-        this.image = image;
-    }
-
-
-    public String getAllFireplaceInfo()
-    {
-        return String.format("Item ID:%s\nItem name:%s\nItem Price:%d\nItem Stock:%d\nItem Description:%s\nItem " +
-                "Image:%s\nItem Supplier:%s",this.itemId, this.itemName, this.price, this.stock, this.description,
-                this.image, this.supplier.getName());
-    }
-
-    public Supplier getSupplier()
+    // GETTER METHODS FOR THE PRIVATE VARIABLES
+    public int getSupplierID()
     {
         return this.supplier;
     }
+    public String getItemName()
+    {
+        return this.itemName;
+    }
 
-    // public String getItemId()
-    // {
-    //     return this.supplierID;
-    // }
+    public int getPrice()
+    {
+        return this.price;
+    }
 
-    // public String getLocation()
-    // {
-    //     return this.location;
-    // }
+    public int getStock()
+    {
+        return this.stock;
+    }
 
-    // public String getName()
-    // {
-    //     return this.name;
-    // }
+    public String getDescription()
+    {
+        return this.description;
+    }
 
-    // public String getContact()
-    // {
-    //     return this.contact;
-    // }
-
-    // public String getEmail()
-    // {
-    //     return this.businessEmail;
-    // }
+    public String getImagePath()
+    {
+        return this.image;
+    }
 
 }
