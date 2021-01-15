@@ -14,5 +14,6 @@ public class Main {
 
     public static void main(String[] args) {
         DatabaseSuper.updateRowInDB(3, "fireplace", "stock", "2");
+        
     }
 }
