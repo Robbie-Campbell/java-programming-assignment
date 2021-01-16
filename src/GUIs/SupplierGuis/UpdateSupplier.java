@@ -1,4 +1,4 @@
-package src.GUIs;
+package src.GUIs.SupplierGuis;
 
 import java.util.*;
 import javax.swing.*;
@@ -10,8 +10,9 @@ import src.DatabaseInteractions.StaticDatabaseMethods;
 
 import java.awt.*;
 import java.awt.event.*;
+import src.GUIs.*;
 
-public class SupplierGUI implements ActionListener {
+public class UpdateSupplier implements ActionListener {
     GUIContainer container;
     JPanel mainPanel, decisionPanel;
     JLabel idPrompt, namePrompt, locationPrompt, contactPrompt, emailPrompt;
@@ -19,10 +20,9 @@ public class SupplierGUI implements ActionListener {
     JComboBox listOfIds;
     JButton updateSupplier;
 
-    public SupplierGUI() {
+    public UpdateSupplier() {
         container = new GUIContainer();
-        container.frame.setBounds(100, 100, 400, 400);
-        container.frame.setTitle("Suppliers");
+        container.frame.setTitle("Update a Supplier");
         mainPanel = container.contentPanel;
         decisionPanel = new JPanel();
         decisionPanel.setLayout(new GridBagLayout());
@@ -114,7 +114,7 @@ public class SupplierGUI implements ActionListener {
                 if(result == JOptionPane.YES_OPTION)
                 {
                 update.updateRowInDB();
-                JOptionPane.showMessageDialog(container.frame, "Successfully updated user");
+                JOptionPane.showMessageDialog(container.frame, "Successfully Updated User");
                 }
                 else
                 {

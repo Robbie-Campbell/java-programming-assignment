@@ -12,9 +12,8 @@ public class GUISuper {
     public static void addComponent(Container container, Component component, int gridx, int gridy,
       int gridwidth, int gridheight, int anchor, int fill) 
       {
-          GridBagConstraints gbc = new GridBagConstraints(gridx, gridy, gridwidth, gridheight, 1.0, 1.0,
+          GridBagConstraints gbc = new GridBagConstraints(gridx, gridy, gridwidth, gridheight, 1.0, 0.5,
               anchor, fill, insets, 0, 0);
               container.add(component, gbc);
       }
-
 }

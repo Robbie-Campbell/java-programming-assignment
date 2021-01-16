@@ -115,25 +115,10 @@ public class StaticDatabaseMethods {
             }
             PreparedStatement stmt = conn.prepareStatement(query);
             stmt.setInt(1, id);
-
-            // Check that the user wants to delete the supplier from the table
-            System.out.println("Are you sure you want to delete " + tableName + " " + String.valueOf(id) + "?(y/n):");
-            Scanner confirm = new Scanner(System.in);
-            String option = confirm.nextLine();
-
-            // Delete the user
-            if (option.equals("y")) {
-                stmt.execute();
-                conn.close();
-                System.out.println("User successfully deleted");
-                return true;
-            }
-
-            // Cancel the operation
-            else {
-                System.out.println("Operation has been cancelled");
-                return false;
-            }
+            stmt.execute();
+            conn.close();
+            System.out.println("User successfully deleted");
+            return true;
         } catch (SQLException e) {
             System.out.println(e);
             return false;

@@ -5,12 +5,18 @@ import java.awt.*;
 import java.util.*;
 import java.awt.event.*;
 import src.GUIs.*;
+import src.GUIs.SupplierGuis.*;
+import javax.swing.border.EmptyBorder;
+import javax.swing.BoxLayout;
+import javax.swing.Box;
+import java.awt.Insets;
+import java.awt.Dimension;
 
-public class GUIContainer implements ActionListener{
+public class GUIContainer implements ActionListener {
 
     // Initialise variables
-    JFrame frame;
-    JPanel navbar, contentPanel;
+    public JFrame frame;
+    public JPanel navbar, contentPanel;
     JLabel title;
     JButton home, fireplaces, suppliers;
     Font mainFont;
@@ -25,7 +31,7 @@ public class GUIContainer implements ActionListener{
 
         // Create a frame
         frame = new JFrame();
-        frame.setResizable(false);
+        frame.setBounds(100, 100, 500, 400);
 
         // Create the main panel
         contentPanel = new JPanel();
@@ -45,7 +51,7 @@ public class GUIContainer implements ActionListener{
         title = new JLabel("Chesneys Fireplaces");
         title.setFont(mainFont);
         title.setForeground(white);
-        GUISuper.addComponent(navbar, title, 0, 0, 4, 2, GridBagConstraints.CENTER, GridBagConstraints.VERTICAL);
+        GUISuper.addComponent(navbar, title, 0, 0, 4, 1, GridBagConstraints.CENTER, GridBagConstraints.VERTICAL);
 
         // Add the home button to the navbar
         home = new JButton("Home");
@@ -70,22 +76,19 @@ public class GUIContainer implements ActionListener{
     public void actionPerformed(ActionEvent e) {
 
         // Home Page
-        if (e.getSource() == home)
-        {
+        if (e.getSource() == home) {
             frame.dispose();
             new Home();
         }
 
         // Supplier page
-        if (e.getSource() == suppliers)
-        {
+        if (e.getSource() == suppliers) {
             frame.dispose();
-            new SupplierGUI();
+            new BaseSupplier();
         }
 
         // Fireplaces page
-        if (e.getSource() == fireplaces)
-        {
+        if (e.getSource() == fireplaces) {
             frame.dispose();
             new FireplaceGUI();
         }
