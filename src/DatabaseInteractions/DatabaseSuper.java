@@ -9,6 +9,8 @@ This class contains all of the static functions that are shared between more tha
 
 import java.sql.*;
 import java.util.Scanner;
+import java.util.ArrayList;
+import src.AllClasses.*;
 
 public class DatabaseSuper {
 
@@ -32,34 +34,46 @@ public class DatabaseSuper {
     }
 
     // STATIC METHODS
-    // Connect with the database and select a single supplier based on id
-    public static boolean getSupplierFromDB(int id, String tableName) {
+    // Connect with the database and select a single supplier based on id, return it as the Supplier class
+    public static Supplier getSupplierFromDB(int id, String tableName) {
         try {
+            Supplier wantedSupplier = null;
             Connection conn = DriverManager.getConnection(DatabaseSuper.getDBName(), DatabaseSuper.getUsername(), DatabaseSuper.getPass());
-            PreparedStatement stat = null;
-            if (tableName.equals("supplier"))
-            {
-                stat = conn.prepareStatement("select name from supplier where supplier_id = ?");
-            }
-            else if (tableName.equals("fireplace"))
-            {
-                stat = conn.prepareStatement("select name from fireplace where firepace_id = ?");
-            }
+            PreparedStatement stat = conn.prepareStatement("select * from supplier where supplier_id = ?");
             stat.setInt(1, id);
             ResultSet rs = stat.executeQuery();
             while (rs.next()) {
-                System.out.println(rs.getString(1));
+                wantedSupplier = new Supplier(rs.getInt("supplier_id"), rs.getString("name"), rs.getString("location"), rs.getString("contact"), rs.getString("business_email"));
             }
             conn.close();
-            return true;
+            return wantedSupplier;
         } catch (SQLException e) {
             System.out.println(e);
-            return false;
+            return null;
         }
     }
 
-    // Override the get supplier method and return all of the suppliers in the table
-    public static boolean getSupplierFromDB(String tableName) {
+    // Connect with the database and select a single supplier based on id, return it as the Fireplace class
+    public static Fireplace getFireplaceFromDB(int id) {
+        try {
+            Fireplace wantedFireplace = null;
+            Connection conn = DriverManager.getConnection(DatabaseSuper.getDBName(), DatabaseSuper.getUsername(), DatabaseSuper.getPass());
+            PreparedStatement stat = conn.prepareStatement("select * from fireplace where fireplace_id = ?");
+            stat.setInt(1, id);
+            ResultSet rs = stat.executeQuery();
+            while (rs.next()) {
+                wantedFireplace = new Fireplace(rs.getInt("fireplace_id"), rs.getInt("supplier_id"), rs.getString("item_name"), rs.getInt("price"), rs.getInt("stock"), rs.getString("image"), rs.getString("description"));
+            }
+            conn.close();
+            return wantedFireplace;
+        } catch (SQLException e) {
+            System.out.println(e);
+            return null;
+        }
+    }
+
+    // Override get all values from any table in the database
+    public static boolean getRowFromDB(String tableName) {
         try {
             Connection conn = DriverManager.getConnection(DatabaseSuper.getDBName(), DatabaseSuper.getUsername(), DatabaseSuper.getPass());
             Statement stat = conn.createStatement();

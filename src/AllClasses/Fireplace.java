@@ -10,7 +10,7 @@ The class which stores all of the information for the fireplace class, including
 public class Fireplace {
 
     private String description, itemName, image;
-    private int price, stock, supplier;
+    private int price, stock, supplier, ID;
 
     // CONSTRUCTOR METHODS
     public Fireplace(int supplier, String itemName, int price, int stock)
@@ -21,6 +21,18 @@ public class Fireplace {
         this.image = null;
         this.stock = stock;
         this.supplier = supplier;
+    }
+
+    // OVERRIDEN CONSTRUCTOR FOR GETTING DATA FROM A DB
+    public Fireplace(int ID, int supplier, String itemName, int price, int stock, String image, String description)
+    {
+        this.ID = ID;
+        this.supplier = supplier;
+        this.itemName = itemName;
+        this.price = price;
+        this.stock = stock;
+        this.description = description;
+        this.image = image;
     }
 
     // GETTER METHODS FOR THE PRIVATE VARIABLES

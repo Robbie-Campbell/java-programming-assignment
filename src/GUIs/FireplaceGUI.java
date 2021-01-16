@@ -4,16 +4,17 @@ import java.util.*;
 import javax.swing.*;
 import java.awt.*;
 
-public class Supplier {
+public class FireplaceGUI {
+
     GUIContainer container;
     JPanel mainPanel, imagePanel;
     JLabel image;
 
-    public Supplier()
+    public FireplaceGUI()
     {
         container = new GUIContainer();
         container.frame.setBounds(100,100,700,600);
-        container.frame.setTitle("Suppliers");
+        container.frame.setTitle("Fireplace");
         mainPanel = container.contentPanel;
         imagePanel = new JPanel();
         imagePanel.setBackground(new Color(0,0,0));

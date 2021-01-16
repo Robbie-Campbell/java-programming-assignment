@@ -74,13 +74,13 @@ public class GUIContainer implements ActionListener{
         if (e.getSource() == suppliers)
         {
             frame.dispose();
-            new Supplier();
+            new SupplierGUI();
         }
 
         if (e.getSource() == fireplaces)
         {
             frame.dispose();
-            new Fireplace();
+            new FireplaceGUI();
         }
     }
 

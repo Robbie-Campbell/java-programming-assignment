@@ -13,7 +13,7 @@ import src.DatabaseInteractions.*;
 public class Main {
 
     public static void main(String[] args) {
-        DatabaseSuper.updateRowInDB(3, "fireplace", "stock", "2");
-        
+        Fireplace selected = DatabaseSuper.getFireplaceFromDB(5);
+        System.out.println(selected.getItemName());
     }
 }
