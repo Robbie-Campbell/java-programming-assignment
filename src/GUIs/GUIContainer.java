@@ -8,6 +8,7 @@ import src.GUIs.*;
 
 public class GUIContainer implements ActionListener{
 
+    // Initialise variables
     JFrame frame;
     JPanel navbar, contentPanel;
     JLabel title;
@@ -22,7 +23,7 @@ public class GUIContainer implements ActionListener{
         flame = new Color(226, 88, 34);
         white = new Color(240, 240, 240);
 
-        // Create a frame just for testing
+        // Create a frame
         frame = new JFrame();
         frame.setResizable(false);
 
@@ -46,37 +47,43 @@ public class GUIContainer implements ActionListener{
         title.setForeground(white);
         GUISuper.addComponent(navbar, title, 0, 0, 4, 2, GridBagConstraints.CENTER, GridBagConstraints.VERTICAL);
 
-        // Add the buttons to the navbar
+        // Add the home button to the navbar
         home = new JButton("Home");
         home.setBackground(white);
         home.addActionListener(this);
         GUISuper.addComponent(navbar, home, 0, 2, 2, 1, GridBagConstraints.CENTER, GridBagConstraints.BOTH);
 
-        // Add the buttons to the navbar
+        // Add the supplier button to the navbar
         suppliers = new JButton("Suppliers");
         suppliers.setBackground(white);
         suppliers.addActionListener(this);
         GUISuper.addComponent(navbar, suppliers, 2, 2, 1, 1, GridBagConstraints.CENTER, GridBagConstraints.BOTH);
 
-        // Add the buttons to the navbar
+        // Add the fireplace button to the navbar
         fireplaces = new JButton("Fireplaces");
         fireplaces.setBackground(white);
         fireplaces.addActionListener(this);
         GUISuper.addComponent(navbar, fireplaces, 3, 2, 1, 1, GridBagConstraints.CENTER, GridBagConstraints.BOTH);
     }
 
+    // Open up new pages
     public void actionPerformed(ActionEvent e) {
+
+        // Home Page
         if (e.getSource() == home)
         {
             frame.dispose();
             new Home();
         }
+
+        // Supplier page
         if (e.getSource() == suppliers)
         {
             frame.dispose();
             new SupplierGUI();
         }
 
+        // Fireplaces page
         if (e.getSource() == fireplaces)
         {
             frame.dispose();

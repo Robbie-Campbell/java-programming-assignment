@@ -13,7 +13,12 @@ import src.DatabaseInteractions.*;
 public class Main {
 
     public static void main(String[] args) {
-        Fireplace selected = DatabaseSuper.getFireplaceFromDB(5);
-        System.out.println(selected.getItemName());
+        Fireplace selected = StaticDatabaseMethods.getFireplaceFromDB(5);
+        selected.setDescription("This is a new description");
+        selected.setImagePath("image");
+        selected.updateDBRow();
+
+        Supplier rab = StaticDatabaseMethods.getSupplierFromDB(3);
+        System.out.println(rab.getAllInfo()[1]);
     }
 }

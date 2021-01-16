@@ -14,8 +14,8 @@ public class TableCreationScripts {
     // Creates the supplier table in the database
     public static boolean createSupplierTable() {
         try {
-            Connection conn = DriverManager.getConnection(DatabaseSuper.getDBName(), DatabaseSuper.getUsername(),
-                    DatabaseSuper.getPass());
+            Connection conn = DriverManager.getConnection(StaticDatabaseMethods.getDBName(), StaticDatabaseMethods.getUsername(),
+                    StaticDatabaseMethods.getPass());
             Statement stat = conn.createStatement();
             String query = "CREATE TABLE IF NOT EXISTS `chesneys-fireplaces`.`supplier` ( "
                     + "`supplier_id` INT NOT NULL AUTO_INCREMENT, " + "`name` VARCHAR(30) NOT NULL, "
@@ -33,8 +33,8 @@ public class TableCreationScripts {
     // Create the table fireplace table in the database
     public static boolean createFireplaceTable() {
         try {
-            Connection conn = DriverManager.getConnection(DatabaseSuper.getDBName(), DatabaseSuper.getUsername(),
-                    DatabaseSuper.getPass());
+            Connection conn = DriverManager.getConnection(StaticDatabaseMethods.getDBName(), StaticDatabaseMethods.getUsername(),
+                    StaticDatabaseMethods.getPass());
             Statement stat = conn.createStatement();
             String query = "CREATE TABLE IF NOT EXISTS `chesneys-fireplaces`.`fireplace` ("
                     + "`fireplace_id` INT NOT NULL AUTO_INCREMENT," + "`supplier_id` INT NOT NULL,"

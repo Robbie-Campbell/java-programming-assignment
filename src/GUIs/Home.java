@@ -4,7 +4,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.util.*;
 
-public class Home extends GUIContainer {
+public class Home {
 
     GUIContainer container;
     JPanel mainPanel, imagePanel;
@@ -23,7 +23,6 @@ public class Home extends GUIContainer {
         image = new JLabel();
         image.setIcon(fireplace);
         imagePanel.add(image);
-
         container.frame.setVisible(true);
     }
 

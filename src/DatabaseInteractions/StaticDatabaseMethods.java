@@ -12,7 +12,7 @@ import java.util.Scanner;
 import java.util.ArrayList;
 import src.AllClasses.*;
 
-public class DatabaseSuper {
+public class StaticDatabaseMethods {
 
     // CONNECTION CONFIG
     // The database path
@@ -35,10 +35,10 @@ public class DatabaseSuper {
 
     // STATIC METHODS
     // Connect with the database and select a single supplier based on id, return it as the Supplier class
-    public static Supplier getSupplierFromDB(int id, String tableName) {
+    public static Supplier getSupplierFromDB(int id) {
         try {
             Supplier wantedSupplier = null;
-            Connection conn = DriverManager.getConnection(DatabaseSuper.getDBName(), DatabaseSuper.getUsername(), DatabaseSuper.getPass());
+            Connection conn = DriverManager.getConnection(StaticDatabaseMethods.getDBName(), StaticDatabaseMethods.getUsername(), StaticDatabaseMethods.getPass());
             PreparedStatement stat = conn.prepareStatement("select * from supplier where supplier_id = ?");
             stat.setInt(1, id);
             ResultSet rs = stat.executeQuery();
@@ -57,7 +57,7 @@ public class DatabaseSuper {
     public static Fireplace getFireplaceFromDB(int id) {
         try {
             Fireplace wantedFireplace = null;
-            Connection conn = DriverManager.getConnection(DatabaseSuper.getDBName(), DatabaseSuper.getUsername(), DatabaseSuper.getPass());
+            Connection conn = DriverManager.getConnection(StaticDatabaseMethods.getDBName(), StaticDatabaseMethods.getUsername(), StaticDatabaseMethods.getPass());
             PreparedStatement stat = conn.prepareStatement("select * from fireplace where fireplace_id = ?");
             stat.setInt(1, id);
             ResultSet rs = stat.executeQuery();
@@ -72,99 +72,29 @@ public class DatabaseSuper {
         }
     }
 
-    // Override get all values from any table in the database
-    public static boolean getRowFromDB(String tableName) {
+    // Get all values from any table in the database
+    public static ArrayList<Integer> getRowsFromDB(String tableName) {
         try {
-            Connection conn = DriverManager.getConnection(DatabaseSuper.getDBName(), DatabaseSuper.getUsername(), DatabaseSuper.getPass());
+            ArrayList<Integer> listOfIds = new ArrayList<>();
+            Connection conn = DriverManager.getConnection(StaticDatabaseMethods.getDBName(), StaticDatabaseMethods.getUsername(), StaticDatabaseMethods.getPass());
             Statement stat = conn.createStatement();
             ResultSet rs = null;
             if (tableName.equals("supplier"))
             {
-                rs = stat.executeQuery("select * from supplier");
+                rs = stat.executeQuery("select supplier_id from supplier");
             }
             else if (tableName.equals("fireplace"))
             {
-                rs = stat.executeQuery("select * from fireplace");
+                rs = stat.executeQuery("select fireplace_id from fireplace");
             }
             while (rs.next()) {
-                System.out.println(rs.getString(1));
+                listOfIds.add(rs.getInt(1));
             }
             conn.close();
-            return true;
+            return listOfIds;
         } catch (SQLException e) {
             System.out.println(e);
-            return false;
-        }
-    }
-
-    // UPDATE METHOD
-    // update an already existing row in the supplier table with new information
-    // based on the id passed into it
-    public static boolean updateRowInDB(int id, String tableName, String column, String newValue) {
-        try {
-            Connection conn = DriverManager.getConnection(DatabaseSuper.getDBName(), DatabaseSuper.getUsername(), DatabaseSuper.getPass());
-            String query = "";
-            if (tableName.equals("supplier"))
-            {
-                switch(column)
-                {
-                    case "name":
-                        query = "UPDATE supplier SET name = ? WHERE supplier_id = ?;";
-                        break;
-                    case "location":
-                        query = "UPDATE supplier SET location = ? WHERE supplier_id = ?;";
-                        break;
-                    case "contact":
-                        query = "UPDATE supplier SET contact = ? WHERE supplier_id = ?;";
-                        break;
-                    case "business_email":
-                        query = "UPDATE supplier SET business_email = ? WHERE supplier_id = ?;";
-                        break;
-                }
-            }
-            if (tableName.equals("fireplace"))
-            {
-                switch(column)
-                {
-                    case "supplier_id":
-                        query = "UPDATE fireplace SET supplier_id = ? WHERE fireplace_id = ?;";
-                        break;
-                    case "item_name":
-                        query = "UPDATE fireplace SET location = ? WHERE fireplace_id = ?;";
-                        break;
-                    case "price":
-                        query = "UPDATE fireplace SET price = ? WHERE fireplace_id = ?;";
-                        PreparedStatement stmt = conn.prepareStatement(query);
-                        stmt.setInt(1, Integer.parseInt(newValue));
-                        stmt.setInt(2, id);
-                        stmt.execute();
-                        conn.close();
-                        return true;
-                    case "stock":
-                        query = "UPDATE fireplace SET stock = ? WHERE fireplace_id = ?;";
-                        PreparedStatement stat = conn.prepareStatement(query);
-                        stat.setInt(1, Integer.parseInt(newValue));
-                        stat.setInt(2, id);
-                        stat.execute();
-                        conn.close();
-                        return true;
-                    case "description":
-                        query = "UPDATE fireplace SET description = ? WHERE fireplace_id = ?;";
-                        break;
-                    case "image":
-                        query = "UPDATE fireplace SET image = ? WHERE fireplace_id = ?;";
-                        break;
-                }
-            }
-            PreparedStatement stmt = conn.prepareStatement(query);
-            stmt.setString(1, newValue);
-            stmt.setInt(2, id);
-            stmt.execute();
-            conn.close();
-            return true;
-        } catch (SQLException e) {
-            System.out.println(e);
-            return false;
+            return null;
         }
     }
 
@@ -173,7 +103,7 @@ public class DatabaseSuper {
     // based on the id passed into it
     public static boolean deleteRowFromDb(int id, String tableName) {
         try {
-            Connection conn = DriverManager.getConnection(DatabaseSuper.getDBName(), DatabaseSuper.getUsername(), DatabaseSuper.getPass());
+            Connection conn = DriverManager.getConnection(StaticDatabaseMethods.getDBName(), StaticDatabaseMethods.getUsername(), StaticDatabaseMethods.getPass());
             String query = "";
             if (tableName.equals("supplier"))
             {
