@@ -1,90 +1,170 @@
 package src.AllClasses;
 
-import javax.swing.ImageIcon;
+/*
+Author: Robbie Campbell
+Date: 14/01/2021
+Description:
+The class which stores all of the information for the fireplace class, including the getter methouds for the private variables
+*/
+
+import java.sql.*;
+import src.DatabaseInteractions.StaticDatabaseMethods;
 
 public class Fireplace {
 
-    private String itemId, description, itemName,image;
-    private Supplier supplier;
-    private int price, stock;
+    private String description, itemName, image;
+    private int price, stock, supplier, ID;
 
-    public Fireplace(String itemName, int price, int stock, Supplier supplier)
+    // CONSTRUCTOR METHODS
+    public Fireplace(int supplier, String itemName, int price, int stock)
     {
-        this.itemId = "1";
         this.itemName = itemName;
         this.price = price;
-        this.description = "Please set an item description";
-        this.image = "Please set an item Image";
+        this.description = null;
+        this.image = null;
         this.stock = stock;
         this.supplier = supplier;
     }
 
-    public void deleteFireplace(String id)
+    // OVERRIDEN CONSTRUCTOR FOR GETTING DATA FROM A DB
+    public Fireplace(int ID, int supplier, String itemName, int price, int stock, String image, String description)
     {
-        // Will delete fireplace from database
-    }
-
-    public void updateName(String newName)
-    {
-        this.itemName = newName;
-    }
-
-    public void updatePrice(int price)
-    {
+        this.ID = ID;
+        this.supplier = supplier;
+        this.itemName = itemName;
         this.price = price;
-    }
-
-    public void updateStock(int stockTake)
-    {
-        this.stock -= stockTake;
-    }
-
-    public void setDescription(String description)
-    {
+        this.stock = stock;
         this.description = description;
-    }
-
-    public void setImage(String image)
-    {
         this.image = image;
     }
 
+    // GETTER METHODS FOR THE PRIVATE VARIABLES
 
-    public String getAllFireplaceInfo()
-    {
-        return String.format("Item ID:%s\nItem name:%s\nItem Price:%d\nItem Stock:%d\nItem Description:%s\nItem " +
-                "Image:%s\nItem Supplier:%s",this.itemId, this.itemName, this.price, this.stock, this.description,
-                this.image, this.supplier.getName());
-    }
-
-    public Supplier getSupplier()
+    // Get the supplier ID
+    public int getSupplierID()
     {
         return this.supplier;
     }
 
-    // public String getItemId()
-    // {
-    //     return this.supplierID;
-    // }
+    // Get the fireplace name
+    public String getItemName()
+    {
+        return this.itemName;
+    }
 
-    // public String getLocation()
-    // {
-    //     return this.location;
-    // }
+    // Get the fireplace price
+    public int getPrice()
+    {
+        return this.price;
+    }
 
-    // public String getName()
-    // {
-    //     return this.name;
-    // }
+    // Get the current stock level of the fireplace
+    public int getStock()
+    {
+        return this.stock;
+    }
 
-    // public String getContact()
-    // {
-    //     return this.contact;
-    // }
+    // Get the description of the fireplace
+    public String getDescription()
+    {
+        return this.description;
+    }
 
-    // public String getEmail()
-    // {
-    //     return this.businessEmail;
-    // }
+    // Get the path to the image for the fireplace
+    public String getImagePath()
+    {
+        return this.image;
+    }
+
+    // Get the id of the fireplace
+    public int getId()
+    {
+        return this.ID;
+    }
+
+    // SETTER METHODS FOR THE PRIVATE VARIABLES
+
+    // Set a new Supplier ID
+    public void setSupplierID(int newSupplier)
+    {
+        this.supplier = newSupplier;
+    }
+
+    // Set a new fireplace name
+    public void setItemName(String newItemName)
+    {
+        this.itemName = newItemName;
+    }
+
+    // Set a new fireplace price
+    public void setPrice(int newPrice)
+    {
+        this.price = newPrice;
+    }
+
+    // Remove number of stock taken
+    public void setStock(int stockTaken)
+    {
+        this.stock -= stockTaken;
+    }
+
+    // Get the description of the fireplace
+    public void setDescription(String newDescription)
+    {
+        this.description = newDescription;
+    }
+
+    // Get the path to the image for the fireplace
+    public void setImagePath(String newImagePath)
+    {
+        this.image = newImagePath;
+    }
+
+
+    // CREATE METHOD
+    // Inserts a new supplier into the database
+    public boolean insertFireplaceIntoDB() {
+        try {
+            Connection conn = DriverManager.getConnection(StaticDatabaseMethods.getDBName(), StaticDatabaseMethods.getUsername(), StaticDatabaseMethods.getPass());
+            String query = " insert into fireplace (supplier_id, item_name, price, stock, description, image)" + " values (?, ?, ?, ?, ?, ?)";
+            PreparedStatement stmt = conn.prepareStatement(query);
+            stmt.setInt(1, this.supplier);
+            stmt.setString(2, this.itemName);
+            stmt.setInt(3, this.price);
+            stmt.setInt(4, this.stock);
+            stmt.setString(5, this.description);
+            stmt.setString(6, this.image);
+            stmt.execute();
+            conn.close();
+            return true;
+        } catch (SQLException e) {
+            System.out.println(e);
+            return false;
+        }
+    }
+
+    // UPDATE METHOD
+    // update an already existing row in the Fireplace table with new information
+    // based on the id passed into it
+    public boolean updateDBRow() {
+        try {
+            Connection conn = DriverManager.getConnection(StaticDatabaseMethods.getDBName(), StaticDatabaseMethods.getUsername(), StaticDatabaseMethods.getPass());
+            String query = "UPDATE fireplace SET supplier_id = ?, item_name = ?, price = ?, stock = ?, description = ?, image = ? where fireplace_id = ?";
+            PreparedStatement stmt = conn.prepareStatement(query);
+            stmt.setInt(1, this.supplier);
+            stmt.setString(2, this.itemName);
+            stmt.setInt(3, this.price);
+            stmt.setInt(4, this.stock);
+            stmt.setString(5, this.description);
+            stmt.setString(6, this.image);
+            stmt.setInt(7, this.ID);
+            stmt.execute();
+            conn.close();
+            return true;
+        } catch (SQLException e) {
+            System.out.println(e);
+            return false;
+        }
+    }
 
 }
