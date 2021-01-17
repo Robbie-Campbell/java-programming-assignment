@@ -1,8 +1,6 @@
 package src.GUIs;
 
 import javax.swing.*;
-import java.awt.*;
-import java.util.*;
 
 public class Home {
 

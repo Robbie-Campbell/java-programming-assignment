@@ -1,6 +1,11 @@
 package src.GUIs.SupplierGuis;
 
-import src.AllClasses.Supplier;
+/***********
+ * 
+ * THIS CODE IS CURRENTLY UNNECESSARY
+ * 
+ ***********/
+
 import src.DatabaseInteractions.StaticDatabaseMethods;
 
 import java.awt.*;
@@ -9,13 +14,18 @@ import src.GUIs.*;
 import javax.swing.*;
 
 public class DeleteSupplier implements ActionListener {
-    GUIContainer container;
-    JPanel mainPanel, decisionPanel;
-    JLabel idPrompt, name, location, contact, email;
-    JComboBox listOfIds;
-    JButton deleteSupplier;
 
+    // INITIALISE VARIABLES
+    private GUIContainer container;
+    private JPanel mainPanel, decisionPanel;
+    private JLabel idPrompt, name, location, contact, email;
+    private JComboBox<Integer> listOfIds;
+    private JButton deleteSupplier;
+
+    // CONSTRUCTOR METHOD
     public DeleteSupplier() {
+
+        // Extend the navbar
         container = new GUIContainer();
         container.frame.setTitle("Update a Supplier");
         mainPanel = container.contentPanel;
@@ -28,7 +38,7 @@ public class DeleteSupplier implements ActionListener {
         GUISuper.addComponent(decisionPanel, idPrompt, 0, 0, 1, 1, GridBagConstraints.CENTER, GridBagConstraints.BOTH);
 
         // Create a combobox for a list of ids to delete
-        listOfIds = new JComboBox();
+        listOfIds = new JComboBox<>();
         for (int i : StaticDatabaseMethods.getRowsFromDB("supplier")) {
             listOfIds.addItem(i);
         }

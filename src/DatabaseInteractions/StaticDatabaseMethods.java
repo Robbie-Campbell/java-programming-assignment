@@ -8,7 +8,6 @@ This class contains all of the static functions that are shared between more tha
 */
 
 import java.sql.*;
-import java.util.Scanner;
 import java.util.ArrayList;
 import src.AllClasses.*;
 
