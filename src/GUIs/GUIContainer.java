@@ -4,6 +4,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 import src.GUIs.SupplierGuis.*;
+import src.GUIs.FireplaceGuis.BaseFireplace;
 import javax.swing.border.Border;
 
 public class GUIContainer implements ActionListener {
@@ -13,7 +14,7 @@ public class GUIContainer implements ActionListener {
     public JPanel navbar, contentPanel;
     public Font titleFont, contentFont;
     public Border raisedBorder;
-    public Color flame, white, updateGreen, dangerRed;
+    public Color flame, white, updateGreen, dangerRed, confirmationBlue;
     private JLabel title;
     private JButton home, fireplaces, suppliers;
 
@@ -27,10 +28,11 @@ public class GUIContainer implements ActionListener {
         white = new Color(240, 240, 240);
         updateGreen = new Color(144, 238, 144);
         dangerRed = new Color(130, 0, 0);
+        confirmationBlue = new Color(176, 226, 255);
 
         // Create a frame
         frame = new JFrame();
-        frame.setBounds(100, 100, 500, 400);
+        frame.setBounds(100,100,600,700);
 
         // Create the main panel
         contentPanel = new JPanel();
@@ -90,7 +92,7 @@ public class GUIContainer implements ActionListener {
         // Fireplaces page
         if (e.getSource() == fireplaces) {
             frame.dispose();
-            new FireplaceGUI();
+            new BaseFireplace();
         }
     }
 

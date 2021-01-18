@@ -1,18 +1,18 @@
-package src.GUIs;
+package src.GUIs.FireplaceGuis;
 
 import javax.swing.*;
 import java.awt.*;
+import src.GUIs.*;
 
-public class FireplaceGUI {
+public class BaseFireplace {
 
     GUIContainer container;
     JPanel mainPanel, imagePanel;
     JLabel image;
 
-    public FireplaceGUI()
+    public BaseFireplace()
     {
         container = new GUIContainer();
-        container.frame.setBounds(100,100,700,600);
         container.frame.setTitle("Fireplace");
         mainPanel = container.contentPanel;
         imagePanel = new JPanel();

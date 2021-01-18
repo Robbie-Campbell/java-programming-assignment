@@ -26,7 +26,7 @@ public class Fireplace {
         this.supplier = supplier;
     }
 
-    // OVERRIDEN CONSTRUCTOR FOR GETTING DATA FROM A DB
+    // OVERRIDDEN CONSTRUCTOR FOR GETTING DATA FROM A DB
     public Fireplace(int ID, int supplier, String itemName, int price, int stock, String image, String description)
     {
         this.ID = ID;
