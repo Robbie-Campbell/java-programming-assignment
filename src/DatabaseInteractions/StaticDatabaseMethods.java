@@ -36,10 +36,16 @@ public class StaticDatabaseMethods {
     // Connect with the database and select a single supplier based on id, return it as the Supplier class
     public static Supplier getSupplierFromDB(int id) {
         try {
+
+            // Create the database connection and make the statement
             Supplier wantedSupplier = null;
+
+            // Connect to the database and prepare the statement for execution
             Connection conn = DriverManager.getConnection(StaticDatabaseMethods.getDBName(), StaticDatabaseMethods.getUsername(), StaticDatabaseMethods.getPass());
             PreparedStatement stat = conn.prepareStatement("select * from supplier where supplier_id = ?");
             stat.setInt(1, id);
+
+            // Get all of the information about one of the suppliers and store it in a supplier object
             ResultSet rs = stat.executeQuery();
             while (rs.next()) {
                 wantedSupplier = new Supplier(rs.getInt("supplier_id"), rs.getString("business_name"), rs.getString("collection_name"), rs.getString("owner_name"), 
@@ -56,13 +62,20 @@ public class StaticDatabaseMethods {
     // Connect with the database and select a single supplier based on id, return it as the Fireplace class
     public static Fireplace getFireplaceFromDB(int id) {
         try {
+            
+            // Create a fireplace pointer
             Fireplace wantedFireplace = null;
+
+            // Create the database connection and prepare the statement for execution
             Connection conn = DriverManager.getConnection(StaticDatabaseMethods.getDBName(), StaticDatabaseMethods.getUsername(), StaticDatabaseMethods.getPass());
             PreparedStatement stat = conn.prepareStatement("select * from fireplace where fireplace_id = ?");
             stat.setInt(1, id);
+
+            // Get all of the information about one of the fireplaces and store it in a fireplace object
             ResultSet rs = stat.executeQuery();
             while (rs.next()) {
-                wantedFireplace = new Fireplace(rs.getInt("fireplace_id"), rs.getInt("supplier_id"), rs.getString("item_name"), rs.getInt("price"), rs.getInt("stock"), rs.getString("image"), rs.getString("description"));
+                wantedFireplace = new Fireplace(rs.getInt("fireplace_id"), rs.getInt("supplier_id"), rs.getString("item_name"), 
+                rs.getInt("price"), rs.getInt("stock"), rs.getString("image"), rs.getString("description"), rs.getString("style"), rs.getString("finish"));
             }
             conn.close();
             return wantedFireplace;
@@ -75,10 +88,14 @@ public class StaticDatabaseMethods {
     // Get all values from any table in the database
     public static ArrayList<Integer> getRowsFromDB(String tableName) {
         try {
+
+            // Create an array list to store all of the information then make a db connection
             ArrayList<Integer> listOfIds = new ArrayList<>();
             Connection conn = DriverManager.getConnection(StaticDatabaseMethods.getDBName(), StaticDatabaseMethods.getUsername(), StaticDatabaseMethods.getPass());
             Statement stat = conn.createStatement();
             ResultSet rs = null;
+
+            // Determine which query to execute
             if (tableName.equals("supplier"))
             {
                 rs = stat.executeQuery("select supplier_id from supplier");
@@ -87,6 +104,8 @@ public class StaticDatabaseMethods {
             {
                 rs = stat.executeQuery("select fireplace_id from fireplace");
             }
+
+            // Get all of the id's
             while (rs.next()) {
                 listOfIds.add(rs.getInt(1));
             }

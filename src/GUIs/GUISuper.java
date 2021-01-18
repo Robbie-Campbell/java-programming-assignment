@@ -25,6 +25,7 @@ public class GUISuper {
             container.add(component, gbc);
     }
 
+    // Method to covert the size of an image
     public static BufferedImage resizeImage(BufferedImage originalImage, int type, int IMG_WIDTH, int IMG_HEIGHT) {
       BufferedImage resizedImage = new BufferedImage(IMG_WIDTH, IMG_HEIGHT, type);
       Graphics2D g = resizedImage.createGraphics();
