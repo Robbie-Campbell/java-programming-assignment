@@ -42,7 +42,8 @@ public class StaticDatabaseMethods {
             stat.setInt(1, id);
             ResultSet rs = stat.executeQuery();
             while (rs.next()) {
-                wantedSupplier = new Supplier(rs.getInt("supplier_id"), rs.getString("name"), rs.getString("location"), rs.getString("contact"), rs.getString("business_email"));
+                wantedSupplier = new Supplier(rs.getInt("supplier_id"), rs.getString("business_name"), rs.getString("collection_name"), rs.getString("owner_name"), 
+                rs.getString("location"), rs.getString("contact"), rs.getString("business_email"), rs.getString("image"));
             }
             conn.close();
             return wantedSupplier;

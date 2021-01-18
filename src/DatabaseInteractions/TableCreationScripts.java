@@ -18,9 +18,11 @@ public class TableCreationScripts {
                     StaticDatabaseMethods.getPass());
             Statement stat = conn.createStatement();
             String query = "CREATE TABLE IF NOT EXISTS `chesneys-fireplaces`.`supplier` ( "
-                    + "`supplier_id` INT NOT NULL AUTO_INCREMENT, " + "`name` VARCHAR(30) NOT NULL, "
+                    + "`supplier_id` INT NOT NULL AUTO_INCREMENT, " + "`business_name` VARCHAR(45) NOT NULL, "
+                    + "`collection_name` VARCHAR(45) NOT NULL, " + "`owner_name` VARCHAR(30) NOT NULL, "
                     + "`location` VARCHAR(45) NOT NULL, " + "`contact` VARCHAR(45) NOT NULL, "
-                    + "`business_email` VARCHAR(45) NOT NULL, " + "PRIMARY KEY (`supplier_id`)); ";
+                    + "`business_email` VARCHAR(45) NOT NULL, " + "`image` VARCHAR(45) NOT NULL, "
+                    + "PRIMARY KEY (`supplier_id`)); ";
             stat.executeUpdate(query);
             conn.close();
             return true;

@@ -13,29 +13,53 @@ import src.DatabaseInteractions.StaticDatabaseMethods;
 
 public class Supplier {
 
-    private String location, name, contact, businessEmail;
+    private String location, name, contact, businessEmail, collectionName, businessName, imagePath;
     private int ID;
     
     // CONSTRUCTOR METHOD
-    public Supplier(String name, String location, String contact, String businessEmail)
+    public Supplier(String businessName, String collectionName, String ownerName,  String location, String contact, String businessEmail, String supplierImage)
     {
-        this.name = name;
+        this.collectionName = collectionName;
+        this.businessName = businessName;
+        this.name = ownerName;
         this.location = location;
         this.contact = contact;
         this.businessEmail = businessEmail;
+        this.imagePath = supplierImage;
     }
 
     // OVERRIDEN CONSTRUCTOR FOR GETTING DATA FROM A DB
-    public Supplier(int ID, String name, String location, String contact, String businessEmail)
+    public Supplier(int ID, String businessName, String collectionName, String ownerName, String location, String contact, String businessEmail, String supplierImage)
     {
-        this.name = name;
+        this.ID = ID;
+        this.collectionName = collectionName;
+        this.businessName = businessName;
+        this.name = ownerName;
         this.location = location;
         this.contact = contact;
         this.businessEmail = businessEmail;
-        this.ID = ID;
+        this.imagePath = supplierImage;
     }
 
     // GETTER METHODS FOR EACH OF THE PRIVATE VARIABLES
+
+    // Get the ID of the supplier
+    public int getID()
+    {
+        return this.ID;
+    }
+
+    // Get the business name of the supplier
+    public String getBusinessName()
+    {
+        return this.businessName;
+    }
+
+    // Get the collection range of the supplier
+    public String getCollectionName()
+    {
+        return this.collectionName;
+    }
 
     // Get the location of the supplier
     public String getLocation()
@@ -61,19 +85,30 @@ public class Supplier {
         return this.businessEmail;
     }
 
-    // Get the ID of the supplier
-    public int getID()
+    // Get the imagePath of the supplier
+    public String getImagePath()
     {
-        return this.ID;
+        return this.imagePath;
     }
 
     // This function returns all information in the database about this object
     public String[] getAllInfo()
     {
-        return new String[]{String.valueOf(this.ID), this.name, this.location, this.contact, this.businessEmail};
+        return new String[]{String.valueOf(this.ID), this.businessName, this.collectionName, this.name, this.location, this.contact, this.businessEmail, this.imagePath};
     }
 
     // SETTER METHODS FOR EACH OF THE PRIVATE VARIABLES
+
+    // Set the business name of the supplier
+    public void setBusinessName(String newBusinessName)
+    {
+        this.businessName = newBusinessName;
+    }
+    // Set the collection of the supplier
+    public void setCollectionName(String newCollectionName)
+    {
+        this.collectionName = newCollectionName;
+    }
 
     // Set the location of the supplier
     public void setLocation(String newLocation)
@@ -99,17 +134,26 @@ public class Supplier {
         this.businessEmail = newEmail;
     }
 
+    // Set the email of the supplier
+    public void setImagePath(String newPath)
+    {
+        this.imagePath = newPath;
+    }
+
     // CREATE METHOD
     // Inserts a new supplier into the database
     public boolean insertSupplierIntoDB() {
         try {
             Connection conn = DriverManager.getConnection(StaticDatabaseMethods.getDBName(), StaticDatabaseMethods.getUsername(), StaticDatabaseMethods.getPass());
-            String query = " insert into supplier (name, location, contact, business_email)" + " values (?, ?, ?, ?)";
+            String query = " insert into supplier (business_name, collection_name, owner_name, location, contact, business_email, image)" + " values (?, ?, ?, ?, ?, ?, ?)";
             PreparedStatement stmt = conn.prepareStatement(query);
-            stmt.setString(1, this.name);
-            stmt.setString(2, this.location);
-            stmt.setString(3, this.contact);
-            stmt.setString(4, this.businessEmail);
+            stmt.setString(1, this.businessName);
+            stmt.setString(2, this.collectionName);
+            stmt.setString(3, this.name);
+            stmt.setString(4, this.location);
+            stmt.setString(5, this.contact);
+            stmt.setString(6, this.businessEmail);
+            stmt.setString(7, this.imagePath);
             stmt.execute();
             conn.close();
             return true;
@@ -125,13 +169,16 @@ public class Supplier {
     public boolean updateRowInDB() {
         try {
             Connection conn = DriverManager.getConnection(StaticDatabaseMethods.getDBName(), StaticDatabaseMethods.getUsername(), StaticDatabaseMethods.getPass());
-            String query = "UPDATE supplier SET name = ?, location = ?, contact = ?, business_email = ? where supplier_id = ?";
+            String query = "UPDATE supplier SET business_name = ?, collection_name = ?, owner_name = ?, location = ?, contact = ?, business_email = ?, image = ? where supplier_id = ?";
             PreparedStatement stmt = conn.prepareStatement(query);
-            stmt.setString(1, this.name);
-            stmt.setString(2, this.location);
-            stmt.setString(3, this.contact);
-            stmt.setString(4, this.businessEmail);
-            stmt.setInt(5, this.ID);
+            stmt.setString(1, this.businessName);
+            stmt.setString(2, this.collectionName);
+            stmt.setString(3, this.name);
+            stmt.setString(4, this.location);
+            stmt.setString(5, this.contact);
+            stmt.setString(6, this.businessEmail);
+            stmt.setString(7, this.imagePath);
+            stmt.setInt(8, this.ID);
             stmt.execute();
             conn.close();
             return true;
