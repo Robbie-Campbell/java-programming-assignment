@@ -2,7 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="7f79002b-e2da-469a-ad82-5f5f1cc12fe0" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/AllClasses/Fireplace.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/AllClasses/Fireplace.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/GUIs/FireplaceGuis/FireplaceIndex.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUIs/FireplaceGuis/FireplaceIndex.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/GUIs/FireplaceGuis/FireplaceSingle.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUIs/FireplaceGuis/FireplaceSingle.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -32,6 +34,7 @@
       <updated>1610657767769</updated>
       <workItem from="1610657779659" duration="600000" />
       <workItem from="1610751690860" duration="181000" />
+      <workItem from="1611075104127" duration="6000" />
     </task>
     <servers />
   </component>

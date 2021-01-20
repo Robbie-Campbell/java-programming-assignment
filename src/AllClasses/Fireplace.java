@@ -158,7 +158,7 @@ public class Fireplace {
 
     // CREATE METHOD
     // Inserts a new supplier into the database
-    public boolean insertFireplaceIntoDB() {
+    public void insertFireplaceIntoDB() {
         try {
             Connection conn = DriverManager.getConnection(StaticDatabaseMethods.getDBName(), StaticDatabaseMethods.getUsername(), StaticDatabaseMethods.getPass());
             String query = " insert into fireplace (supplier_id, item_name, price, stock, description, image, style, finish)" + " values (?, ?, ?, ?, ?, ?, ?, ?)";
@@ -173,17 +173,15 @@ public class Fireplace {
             stmt.setString(8, this.finish);
             stmt.execute();
             conn.close();
-            return true;
         } catch (SQLException e) {
             System.out.println(e);
-            return false;
         }
     }
 
-    // UPDATE METHOD
+    // UPDATE METHODS
     // update an already existing row in the Fireplace table with new information
     // based on the id passed into it
-    public boolean updateDBRow() {
+    public void updateRowInDB() {
         try {
             Connection conn = DriverManager.getConnection(StaticDatabaseMethods.getDBName(), StaticDatabaseMethods.getUsername(), StaticDatabaseMethods.getPass());
             String query = "UPDATE fireplace SET supplier_id = ?, item_name = ?, price = ?, stock = ?, description = ?, image = ?, style = ?, finish = ? where fireplace_id = ?";
@@ -199,10 +197,24 @@ public class Fireplace {
             stmt.setInt(9, this.ID);
             stmt.execute();
             conn.close();
-            return true;
         } catch (SQLException e) {
             System.out.println(e);
-            return false;
+        }
+    }
+
+    // Update the stock of a given fireplace
+    public void updateStockLevel() {
+        try {
+            Connection conn = DriverManager.getConnection(StaticDatabaseMethods.getDBName(), StaticDatabaseMethods.getUsername(), StaticDatabaseMethods.getPass());
+            String query = "UPDATE fireplace SET stock = ? WHERE fireplace_id = ?";
+            PreparedStatement stmt = conn.prepareStatement(query);
+            stmt.setInt(1, this.stock);
+            stmt.setInt(2, this.ID);
+            stmt.execute();
+            conn.close();
+        }
+        catch (SQLException ex){
+            ex.printStackTrace();
         }
     }
 

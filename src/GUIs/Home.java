@@ -12,7 +12,6 @@ public class Home {
     {
         container = new GUIContainer();
         container.frame.setTitle("Home");
-        container.frame.pack();
         mainPanel = container.contentPanel;
         container.frame.setVisible(true);
     }

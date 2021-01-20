@@ -11,12 +11,14 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import javax.imageio.ImageIO;
+import java.awt.event.*;
 
 
 public class FireplaceIndex {
 
     private GUIContainer container;
     private JPanel mainPanel, decisionPanel;
+    private JLabel businessName, fireplaceName, price, stock;
 
     // CONSTRUCTOR METHOD
     public FireplaceIndex() {
@@ -69,20 +71,19 @@ public class FireplaceIndex {
                 ex.printStackTrace();
             }
 
-
             // Set all label text then place in descending order onto the panel
-            JLabel businessName = new JLabel("Supplier Name: " + StaticDatabaseMethods.getSupplierFromDB(Integer.parseInt(selected[1])).getBusinessName());
+            businessName = new JLabel("Supplier Name: " + StaticDatabaseMethods.getSupplierFromDB(Integer.parseInt(selected[1])).getBusinessName());
             businessName.setFont(container.contentFont);
-            JLabel collectionName = new JLabel("Fireplace Name: " + selected[2]);
-            collectionName.setFont(container.contentFont);
-            JLabel name = new JLabel("Price: " + selected[3] + ".00");
-            name.setFont(container.contentFont);
-            JLabel location = new JLabel("Stock: " + selected[4]);
-            location.setFont(container.contentFont);
+            fireplaceName = new JLabel("Fireplace Name: " + selected[2]);
+            fireplaceName.setFont(container.contentFont);
+            price = new JLabel("Price: " + selected[3] + ".00");
+            price.setFont(container.contentFont);
+            stock = new JLabel("Stock: " + selected[4]);
+            stock.setFont(container.contentFont);
             GUISuper.addComponent(displayPanel, businessName, 0, 1, 1, 1, GridBagConstraints.WEST, GridBagConstraints.HORIZONTAL, 5);
-            GUISuper.addComponent(displayPanel, collectionName, 0, 2, 1, 1, GridBagConstraints.WEST, GridBagConstraints.HORIZONTAL, 5);
-            GUISuper.addComponent(displayPanel, name, 0, 3, 1, 1, GridBagConstraints.WEST, GridBagConstraints.HORIZONTAL, 5);
-            GUISuper.addComponent(displayPanel, location, 0, 4, 1, 1, GridBagConstraints.WEST, GridBagConstraints.HORIZONTAL, 5);
+            GUISuper.addComponent(displayPanel, fireplaceName, 0, 2, 1, 1, GridBagConstraints.WEST, GridBagConstraints.HORIZONTAL, 5);
+            GUISuper.addComponent(displayPanel, price, 0, 3, 1, 1, GridBagConstraints.WEST, GridBagConstraints.HORIZONTAL, 5);
+            GUISuper.addComponent(displayPanel, stock, 0, 4, 1, 1, GridBagConstraints.WEST, GridBagConstraints.HORIZONTAL, 5);
             GUISuper.addComponent(decisionPanel, displayPanel, index % 2, nextRow, 1, 1, GridBagConstraints.CENTER, GridBagConstraints.BOTH, 5);
 
             // Create a button that when pressed creates a new update information page for the user to update fireplace information
@@ -90,17 +91,32 @@ public class FireplaceIndex {
             update.setBackground(container.updateGreen);
             update.setBorder(container.raisedBorder);
             update.setFont(container.contentFont);
-            // update.addActionListener(new ActionListener(){
-            //     public void actionPerformed(ActionEvent e)
-            //     {
-            //         // Create an instance of the new update supplier class
-            //         new UpdateSupplier(StaticDatabaseMethods.getSupplierFromDB(i));
-            //         container.frame.dispose();
-            //     }
-            // });
+            update.addActionListener(new ActionListener(){
+                public void actionPerformed(ActionEvent e)
+                {
+                    // Create an instance of the new update supplier class
+                    new UpdateFireplace(StaticDatabaseMethods.getFireplaceFromDB(i));
+                    container.frame.dispose();
+                }
+            });
+
+            // Create a button that when pressed creates a new update information page for the user to update fireplace information
+            JButton select = new JButton("View more");
+            select.setBackground(container.confirmationBlue);
+            select.setBorder(container.raisedBorder);
+            select.setFont(container.contentFont);
+            select.addActionListener(new ActionListener(){
+            public void actionPerformed(ActionEvent e)
+                {
+                    // Create an instance of the new update supplier class
+                    new FireplaceSingle(StaticDatabaseMethods.getFireplaceFromDB(i).getId());
+                    container.frame.dispose();
+                }
+            });
 
             // Add the button to the panel
-            GUISuper.addComponent(displayPanel, update, 0, 5, 0, 1, GridBagConstraints.CENTER, GridBagConstraints.BOTH, 3);
+            GUISuper.addComponent(displayPanel, select, 0, 5, 0, 1, GridBagConstraints.CENTER, GridBagConstraints.BOTH, 3);
+            GUISuper.addComponent(displayPanel, update, 0, 6, 0, 1, GridBagConstraints.CENTER, GridBagConstraints.BOTH, 3);
             index++;
             if (index % 2 == 0)
             {
