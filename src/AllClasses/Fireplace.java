@@ -130,6 +130,12 @@ public class Fireplace {
     {
         this.stock -= stockTaken;
     }
+    
+    // Set a new stock level
+    public void setTotalStock(int newStock)
+    {
+        this.stock = newStock;
+    }
 
     // Get the description of the fireplace
     public void setDescription(String newDescription)

@@ -246,7 +246,7 @@ public class UpdateSupplier implements ActionListener {
 
                     // Save the image into a local directory
                     ImageIO.write(resizeImageJpg, "jpg", new File(newPath));
-                    image.setIcon(new ImageIcon(update.getImagePath()));
+                    image.setIcon(new ImageIcon(resizeImageJpg));
 
                 } catch (IOException ex) {
                     ex.printStackTrace();

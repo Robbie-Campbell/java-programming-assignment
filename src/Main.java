@@ -16,7 +16,6 @@ public class Main {
 
     public static void main(String[] args) {
         // new Home();
-        new Fireplace(11, "Special", 10, 10).insertFireplaceIntoDB();
-        
+        new Home();
     }
 }

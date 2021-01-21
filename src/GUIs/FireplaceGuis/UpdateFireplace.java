@@ -25,7 +25,6 @@ public class UpdateFireplace implements ActionListener {
     private JButton updateFireplace, deleteFireplace, updateImage;
     private int fireplaceID;
     private Font mainFont;
-    private ImageIcon placeholder;
     private JComboBox<String> businessNames;
     private JTextArea updateDescriptionInput;
 
@@ -68,7 +67,7 @@ public class UpdateFireplace implements ActionListener {
                 GridBagConstraints.VERTICAL);
 
         // Update image button
-        placeholder = new ImageIcon(selectedfireplace[6]);
+        ImageIcon placeholder = new ImageIcon(selectedfireplace[6]);
         image = new JLabel();
         image.setIcon(placeholder);
         GUISuper.addComponent(updateInfoPanel, image, 1, 2, 1, 13, GridBagConstraints.CENTER,
@@ -173,7 +172,7 @@ public class UpdateFireplace implements ActionListener {
             update.setSupplierID(Integer.parseInt(businessNames.getSelectedItem().toString().split(":")[0]));
             update.setItemName(updateFireplaceNameInput.getText());
             update.setPrice(Integer.parseInt(priceUpdateInput.getText()));
-            update.setStock(Integer.parseInt(updateStockInput.getText()));
+            update.setTotalStock(Integer.parseInt(updateStockInput.getText()));
             update.setDescription(updateDescriptionInput.getText());
             update.setFinish(updateFinishInput.getText());
             update.setStyle(updateStyleInput.getText());
@@ -244,6 +243,12 @@ public class UpdateFireplace implements ActionListener {
             // On select run this
             if (success == JFileChooser.APPROVE_OPTION) {
                 try {
+                    // Delete the current value in the folder
+                    String oldPath = update.getImagePath();
+                    if (oldPath != "src\\Images\\no-image.png")
+                    {
+                        new File(oldPath).delete();
+                    }
 
                     // Get the selected image from the folder
                     File selectedFile = chooseImage.getSelectedFile();
@@ -251,7 +256,7 @@ public class UpdateFireplace implements ActionListener {
                     int type = resizedImage.getType() == 0 ? BufferedImage.TYPE_INT_ARGB : resizedImage.getType();
                     
                     // Convert input image into a resized file
-                    BufferedImage resizeImageJpg = GUISuper.resizeImage(resizedImage, type, 300, 300);
+                    BufferedImage resizeImageJpg = GUISuper.resizeImage(resizedImage, type, 400, 400);
                     String newPath = "src\\Images\\fireplaces\\" + fireplaceID + ".jpg";
 
                     // Save the new path into the database for that user
@@ -260,9 +265,10 @@ public class UpdateFireplace implements ActionListener {
 
                     // Save the image into a local directory
                     ImageIO.write(resizeImageJpg, "jpg", new File(newPath));
-                    image.setIcon(new ImageIcon(update.getImagePath()));
-
-                } catch (IOException ex) {
+                    image.setIcon(new ImageIcon(ImageIO.read(new File(newPath))));
+                } 
+                catch (IOException ex) 
+                {
                     ex.printStackTrace();
                 }
             } else {
