@@ -27,6 +27,7 @@ public class UpdateFireplace implements ActionListener {
     private Font mainFont;
     private JComboBox<String> businessNames;
     private JTextArea updateDescriptionInput;
+    private BufferedImage placeholder;
 
     // CONSTRUCTOR METHOD
     public UpdateFireplace(Fireplace fireplace) {
@@ -67,9 +68,16 @@ public class UpdateFireplace implements ActionListener {
                 GridBagConstraints.VERTICAL);
 
         // Update image button
-        ImageIcon placeholder = new ImageIcon(selectedfireplace[6]);
         image = new JLabel();
-        image.setIcon(placeholder);
+        File oldImage = new File(selectedfireplace[6]);
+        try{
+                placeholder = ImageIO.read(oldImage);
+                image.setIcon(new ImageIcon(placeholder));
+        }
+        catch (IOException ex)
+        {
+                ex.printStackTrace();
+        }
         GUISuper.addComponent(updateInfoPanel, image, 1, 2, 1, 13, GridBagConstraints.CENTER,
                 GridBagConstraints.VERTICAL);
 
