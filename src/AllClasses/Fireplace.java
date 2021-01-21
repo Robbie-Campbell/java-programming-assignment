@@ -12,7 +12,7 @@ import src.DatabaseInteractions.StaticDatabaseMethods;
 
 public class Fireplace {
 
-    private String description, itemName, image;
+    private String description, itemName, image, style, finish;
     private int price, stock, supplier, ID;
 
     // CONSTRUCTOR METHODS
@@ -20,14 +20,16 @@ public class Fireplace {
     {
         this.itemName = itemName;
         this.price = price;
-        this.description = null;
-        this.image = null;
         this.stock = stock;
         this.supplier = supplier;
+        this.description = null;
+        this.image = "src\\Images\\no-image.png";
+        this.style = null;
+        this.finish = null;
     }
 
     // OVERRIDDEN CONSTRUCTOR FOR GETTING DATA FROM A DB
-    public Fireplace(int ID, int supplier, String itemName, int price, int stock, String image, String description)
+    public Fireplace(int ID, int supplier, String itemName, int price, int stock, String image, String description, String style, String finish)
     {
         this.ID = ID;
         this.supplier = supplier;
@@ -36,6 +38,8 @@ public class Fireplace {
         this.stock = stock;
         this.description = description;
         this.image = image;
+        this.style = style;
+        this.finish = finish;
     }
 
     // GETTER METHODS FOR THE PRIVATE VARIABLES
@@ -76,10 +80,29 @@ public class Fireplace {
         return this.image;
     }
 
+    // Get the style information of the fireplace
+    public String getStyle()
+    {
+        return this.style;
+    }
+
+    // Get the path to the image for the fireplace
+    public String getFinish()
+    {
+        return this.finish;
+    }
+
     // Get the id of the fireplace
     public int getId()
     {
         return this.ID;
+    }
+
+    // This function returns all information in the database about this object
+    public String[] getAllInfo()
+    {
+        return new String[]{String.valueOf(this.ID), String.valueOf(this.supplier), this.itemName, String.valueOf(this.price), 
+            String.valueOf(this.stock), this.description, this.image, this.style, this.finish};
     }
 
     // SETTER METHODS FOR THE PRIVATE VARIABLES
@@ -107,6 +130,12 @@ public class Fireplace {
     {
         this.stock -= stockTaken;
     }
+    
+    // Set a new stock level
+    public void setTotalStock(int newStock)
+    {
+        this.stock = newStock;
+    }
 
     // Get the description of the fireplace
     public void setDescription(String newDescription)
@@ -120,13 +149,25 @@ public class Fireplace {
         this.image = newImagePath;
     }
 
+    // Set the style of the fireplace
+    public void setStyle(String newStyle)
+    {
+        this.style = newStyle;
+    }
+
+    // Set the finish of the fireplace
+    public void setFinish(String newFinish)
+    {
+        this.finish = newFinish;
+    }
+
 
     // CREATE METHOD
     // Inserts a new supplier into the database
-    public boolean insertFireplaceIntoDB() {
+    public void insertFireplaceIntoDB() {
         try {
             Connection conn = DriverManager.getConnection(StaticDatabaseMethods.getDBName(), StaticDatabaseMethods.getUsername(), StaticDatabaseMethods.getPass());
-            String query = " insert into fireplace (supplier_id, item_name, price, stock, description, image)" + " values (?, ?, ?, ?, ?, ?)";
+            String query = " insert into fireplace (supplier_id, item_name, price, stock, description, image, style, finish)" + " values (?, ?, ?, ?, ?, ?, ?, ?)";
             PreparedStatement stmt = conn.prepareStatement(query);
             stmt.setInt(1, this.supplier);
             stmt.setString(2, this.itemName);
@@ -134,22 +175,22 @@ public class Fireplace {
             stmt.setInt(4, this.stock);
             stmt.setString(5, this.description);
             stmt.setString(6, this.image);
+            stmt.setString(7, this.style);
+            stmt.setString(8, this.finish);
             stmt.execute();
             conn.close();
-            return true;
         } catch (SQLException e) {
             System.out.println(e);
-            return false;
         }
     }
 
-    // UPDATE METHOD
+    // UPDATE METHODS
     // update an already existing row in the Fireplace table with new information
     // based on the id passed into it
-    public boolean updateDBRow() {
+    public void updateRowInDB() {
         try {
             Connection conn = DriverManager.getConnection(StaticDatabaseMethods.getDBName(), StaticDatabaseMethods.getUsername(), StaticDatabaseMethods.getPass());
-            String query = "UPDATE fireplace SET supplier_id = ?, item_name = ?, price = ?, stock = ?, description = ?, image = ? where fireplace_id = ?";
+            String query = "UPDATE fireplace SET supplier_id = ?, item_name = ?, price = ?, stock = ?, description = ?, image = ?, style = ?, finish = ? where fireplace_id = ?";
             PreparedStatement stmt = conn.prepareStatement(query);
             stmt.setInt(1, this.supplier);
             stmt.setString(2, this.itemName);
@@ -157,13 +198,29 @@ public class Fireplace {
             stmt.setInt(4, this.stock);
             stmt.setString(5, this.description);
             stmt.setString(6, this.image);
-            stmt.setInt(7, this.ID);
+            stmt.setString(7, this.style);
+            stmt.setString(8, this.finish);
+            stmt.setInt(9, this.ID);
             stmt.execute();
             conn.close();
-            return true;
         } catch (SQLException e) {
             System.out.println(e);
-            return false;
+        }
+    }
+
+    // Update the stock of a given fireplace
+    public void updateStockLevel() {
+        try {
+            Connection conn = DriverManager.getConnection(StaticDatabaseMethods.getDBName(), StaticDatabaseMethods.getUsername(), StaticDatabaseMethods.getPass());
+            String query = "UPDATE fireplace SET stock = ? WHERE fireplace_id = ?";
+            PreparedStatement stmt = conn.prepareStatement(query);
+            stmt.setInt(1, this.stock);
+            stmt.setInt(2, this.ID);
+            stmt.execute();
+            conn.close();
+        }
+        catch (SQLException ex){
+            ex.printStackTrace();
         }
     }
 

@@ -53,7 +53,7 @@ public class UpdateSupplier implements ActionListener {
         // Tell the user which supplier they are updating
         showSupplierForUpdate = new JLabel("UPDATING INFORMATION FOR SUPPLIER: " + selectedSupplier[0]);
         showSupplierForUpdate.setFont(mainFont);
-        GUISuper.addComponent(updateInfoPanel, showSupplierForUpdate, 0, 0, 1, 1, GridBagConstraints.CENTER,
+        GUISuper.addComponent(updateInfoPanel, showSupplierForUpdate, 0, 0, 2, 1, GridBagConstraints.CENTER,
                 GridBagConstraints.VERTICAL);
 
         // Update image button
@@ -69,7 +69,7 @@ public class UpdateSupplier implements ActionListener {
         updateImage.setBackground(container.updateGreen);
         updateImage.setBorder(container.raisedBorder);
         updateImage.addActionListener(this);
-        GUISuper.addComponent(updateInfoPanel, updateImage, 1, 12, 1, 1, GridBagConstraints.CENTER,
+        GUISuper.addComponent(updateInfoPanel, updateImage, 1, 14, 1, 1, GridBagConstraints.CENTER,
                 GridBagConstraints.BOTH, 5);
         updateImage.addActionListener(this);
 
@@ -246,7 +246,7 @@ public class UpdateSupplier implements ActionListener {
 
                     // Save the image into a local directory
                     ImageIO.write(resizeImageJpg, "jpg", new File(newPath));
-                    image.setIcon(new ImageIcon(update.getImagePath()));
+                    image.setIcon(new ImageIcon(resizeImageJpg));
 
                 } catch (IOException ex) {
                     ex.printStackTrace();

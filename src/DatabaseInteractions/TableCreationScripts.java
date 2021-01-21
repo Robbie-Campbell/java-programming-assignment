@@ -41,7 +41,8 @@ public class TableCreationScripts {
             String query = "CREATE TABLE IF NOT EXISTS `chesneys-fireplaces`.`fireplace` ("
                     + "`fireplace_id` INT NOT NULL AUTO_INCREMENT," + "`supplier_id` INT NOT NULL,"
                     + "`item_name` VARCHAR(45) NOT NULL," + "`price` INT NOT NULL," + "`stock` INT NOT NULL,"
-                    + "`description` VARCHAR(45) NULL," + "`image` VARCHAR(45) NULL," + "PRIMARY KEY (fireplace_id),"
+                    + "`description` VARCHAR(100) NULL," + "`image` VARCHAR(45) NULL,"
+                    + "`style` VARCHAR(45) NULL," + "`finish` VARCHAR(45) NULL," + "PRIMARY KEY (fireplace_id),"
                     + "FOREIGN KEY (supplier_id) REFERENCES supplier(supplier_id) ON DELETE CASCADE);";
             stat.executeUpdate(query);
             conn.close();

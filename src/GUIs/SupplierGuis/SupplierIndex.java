@@ -50,11 +50,14 @@ public class SupplierIndex {
             // Get the supplier information from the database in a format for displaying on labels
             String[] selected = StaticDatabaseMethods.getSupplierFromDB(i).getAllInfo();
 
+            // Resize the image for display
             try{
+
+                // Pass in the database image
                 BufferedImage resizedImage = ImageIO.read(new File(selected[7]));
                 int type = resizedImage.getType() == 0 ? BufferedImage.TYPE_INT_ARGB : resizedImage.getType();
                 
-                // Convert input image into a resized file
+                // Resize a given image
                 BufferedImage resizeImage = GUISuper.resizeImage(resizedImage, type, 200, 200);
                 ImageIcon placeholder = new ImageIcon(resizeImage);
                 JLabel image = new JLabel();
@@ -70,7 +73,7 @@ public class SupplierIndex {
             // Set all label text then place in descending order onto the panel
             JLabel businessName = new JLabel("Business Name: " + selected[1]);
             businessName.setFont(container.contentFont);
-            JLabel collectionName = new JLabel("CollectionName: " + selected[2]);
+            JLabel collectionName = new JLabel("Collection Name: " + selected[2]);
             collectionName.setFont(container.contentFont);
             JLabel name = new JLabel("Owner Name: " + selected[3]);
             name.setFont(container.contentFont);

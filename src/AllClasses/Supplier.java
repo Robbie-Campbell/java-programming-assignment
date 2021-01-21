@@ -145,7 +145,7 @@ public class Supplier {
     public boolean insertSupplierIntoDB() {
         try {
             Connection conn = DriverManager.getConnection(StaticDatabaseMethods.getDBName(), StaticDatabaseMethods.getUsername(), StaticDatabaseMethods.getPass());
-            String query = " insert into supplier (business_name, collection_name, owner_name, location, contact, business_email, image)" + " values (?, ?, ?, ?, ?, ?, ?)";
+            String query = " insert into supplier (business_name, collection_name, owner_name, location, contact, business_email, image) values (?, ?, ?, ?, ?, ?, ?)";
             PreparedStatement stmt = conn.prepareStatement(query);
             stmt.setString(1, this.businessName);
             stmt.setString(2, this.collectionName);

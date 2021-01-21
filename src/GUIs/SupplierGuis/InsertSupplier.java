@@ -83,7 +83,7 @@ public class InsertSupplier implements ActionListener {
                 GridBagConstraints.BOTH);
 
         // Submit an supplier to the db
-        insertSupplier = new JButton("Insert Supplier");
+        insertSupplier = new JButton("Create Supplier");
         insertSupplier.setBackground(container.confirmationBlue);
         insertSupplier.setBorder(container.raisedBorder);
         insertSupplier.setFont(container.contentFont);
