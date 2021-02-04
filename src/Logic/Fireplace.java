@@ -1,4 +1,4 @@
-package src.AllClasses;
+package src.Logic;
 
 /*
 Author: Robbie Campbell
@@ -9,16 +9,16 @@ The class which stores all of the information for the fireplace class, including
 
 import java.sql.*;
 
-public class Fireplace extends Item implements ItemInterface {
+public class Fireplace extends Item {
 
 
-    private ItemType itemType = ItemType.FIREPLACE;
     private String description, itemName, image, style, finish;
-    private int price, stock, supplier, ID;
+    private int price, stock, supplier;
 
     // CONSTRUCTOR METHODS
     public Fireplace(int supplier, String itemName, int price, int stock)
     {
+        this.itemType = ItemType.FIREPLACE;
         this.itemName = itemName;
         this.price = price;
         this.stock = stock;
@@ -49,7 +49,8 @@ public class Fireplace extends Item implements ItemInterface {
     // GETTER METHODS FOR THE PRIVATE VARIABLES
 
     // Get the supplier ID
-    public int getSupplierID()
+    @Override
+    public int getId()
     {
         return this.supplier;
     }
@@ -94,12 +95,6 @@ public class Fireplace extends Item implements ItemInterface {
     public String getFinish()
     {
         return this.finish;
-    }
-
-    // Get the id of the fireplace
-    public int getId()
-    {
-        return this.ID;
     }
 
     // This function returns all information in the database about this object
@@ -168,7 +163,7 @@ public class Fireplace extends Item implements ItemInterface {
 
     // Set the finish of the fireplace
     public void setFinish(String newFinish)
-    {
+    {+setFinish
         this.finish = newFinish;
     }
 

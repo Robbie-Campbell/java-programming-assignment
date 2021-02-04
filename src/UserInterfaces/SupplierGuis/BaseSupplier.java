@@ -1,24 +1,25 @@
-package src.GUIs.FireplaceGuis;
+package src.UserInterfaces.SupplierGuis;
 
 import javax.swing.*;
 
+import src.UserInterfaces.*;
+
 import java.awt.*;
 import java.awt.event.*;
-import src.GUIs.*;
 
-public class BaseFireplace implements ActionListener {
+public class BaseSupplier implements ActionListener {
 
     // INITIALISE VARIABLES
     private GUIContainer container;
     private JPanel mainPanel, decisionPanel;
-    private JButton insertFireplace, indexFireplace;
+    private JButton insertSupplier, listSupplier;
 
     // CONSTRUCTOR METHOD
-    public BaseFireplace() {
+    public BaseSupplier() {
 
         // Extend the navbar
         container = new GUIContainer();
-        container.frame.setTitle("Fireplace Directory");
+        container.frame.setTitle("Supplier Directory");
         mainPanel = container.contentPanel;
 
         // Create the decision panel
@@ -28,18 +29,18 @@ public class BaseFireplace implements ActionListener {
         GUISuper.addComponent(mainPanel, decisionPanel, 0, 1, 1, 1, GridBagConstraints.CENTER, GridBagConstraints.BOTH);
 
         // Insert a new supplier button
-        insertFireplace = new JButton("Insert a New Fireplace");
-        insertFireplace.setFont(container.contentFont);
-        GUISuper.addComponent(decisionPanel, insertFireplace, 0, 0, 1, 1, GridBagConstraints.CENTER,
+        insertSupplier = new JButton("Insert a New Supplier");
+        insertSupplier.setFont(container.contentFont);
+        GUISuper.addComponent(decisionPanel, insertSupplier, 0, 0, 1, 1, GridBagConstraints.CENTER,
                 GridBagConstraints.BOTH);
-        insertFireplace.addActionListener(this);
+        insertSupplier.addActionListener(this);
 
         // List all of suppliers in database button
-        indexFireplace = new JButton("Show All Fireplace Information");
-        indexFireplace.setFont(container.contentFont);
-        GUISuper.addComponent(decisionPanel, indexFireplace, 0, 2, 1, 1, GridBagConstraints.CENTER,
+        listSupplier = new JButton("Show All Supplier Information");
+        listSupplier.setFont(container.contentFont);
+        GUISuper.addComponent(decisionPanel, listSupplier, 0, 2, 1, 1, GridBagConstraints.CENTER,
                 GridBagConstraints.BOTH);
-        indexFireplace.addActionListener(this);
+        listSupplier.addActionListener(this);
 
         container.frame.setVisible(true);
     }
@@ -48,16 +49,16 @@ public class BaseFireplace implements ActionListener {
     public void actionPerformed(ActionEvent e) {
 
         // Insert a new supplier
-        if (e.getSource() == insertFireplace) 
+        if (e.getSource() == insertSupplier) 
         {
-            new InsertFireplace();
+            new InsertSupplier();
             container.frame.dispose();
         }
 
         // List all of the suppliers
-        if (e.getSource() == indexFireplace) 
+        if (e.getSource() == listSupplier) 
         {
-            new FireplaceIndex();
+            new SupplierIndex();
             container.frame.dispose();
         }
     }

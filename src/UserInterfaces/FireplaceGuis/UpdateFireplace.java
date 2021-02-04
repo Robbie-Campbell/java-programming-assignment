@@ -1,13 +1,13 @@
-package src.GUIs.FireplaceGuis;
-
-import src.AllClasses.Fireplace;
-import src.AllClasses.Item;
-import src.AllClasses.Supplier;
+package src.UserInterfaces.FireplaceGuis;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
-import src.GUIs.GUIContainer;
-import src.GUIs.GUISuper;
+
+import src.Logic.Fireplace;
+import src.Logic.Item;
+import src.Logic.Supplier;
+import src.UserInterfaces.GUIContainer;
+import src.UserInterfaces.GUISuper;
 
 import java.awt.*;
 import java.awt.event.*;

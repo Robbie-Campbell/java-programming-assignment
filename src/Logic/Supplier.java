@@ -1,4 +1,4 @@
-package src.AllClasses;
+package src.Logic;
 
 /*
 Author: Robbie Campbell
@@ -10,15 +10,14 @@ This class contains all of the information for a supplier, it also contains the 
 
 import java.sql.*;
 
-public class Supplier extends Item implements ItemInterface {
+public class Supplier extends Item {
 
-    private ItemType itemType = ItemType.SUPPLIER;
     private String location, name, contact, businessEmail, collectionName, businessName, imagePath;
-    private int ID;
     
     // CONSTRUCTOR METHOD
     public Supplier(String businessName, String collectionName, String ownerName,  String location, String contact, String businessEmail, String supplierImage)
     {
+        this.itemType = ItemType.SUPPLIER;
         this.collectionName = collectionName;
         this.businessName = businessName;
         this.name = ownerName;
@@ -47,7 +46,8 @@ public class Supplier extends Item implements ItemInterface {
     // GETTER METHODS FOR EACH OF THE PRIVATE VARIABLES
 
     // Get the ID of the supplier
-    public int getID()
+    @Override
+    public int getId()
     {
         return this.ID;
     }

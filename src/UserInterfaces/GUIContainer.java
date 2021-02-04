@@ -1,11 +1,13 @@
-package src.GUIs;
+package src.UserInterfaces;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
-import src.GUIs.SupplierGuis.*;
-import src.GUIs.FireplaceGuis.BaseFireplace;
+
 import javax.swing.border.Border;
+
+import src.UserInterfaces.FireplaceGuis.BaseFireplace;
+import src.UserInterfaces.SupplierGuis.*;
 
 public class GUIContainer implements ActionListener {
 
@@ -35,8 +37,8 @@ public class GUIContainer implements ActionListener {
         frame.setBounds(100,100,600,700);
 
         // Create the main panel
-        contentPanel = new JPanel();
-        contentPanel.setLayout(new GridBagLayout());
+        this.contentPanel = new JPanel();
+        this.contentPanel.setLayout(new GridBagLayout());
         frame.add(contentPanel);
 
         // Create the navbar

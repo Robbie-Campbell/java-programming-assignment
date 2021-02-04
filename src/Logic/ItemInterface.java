@@ -1,4 +1,4 @@
-package src.AllClasses;
+package src.Logic;
 
 interface ItemInterface {
     
@@ -16,4 +16,7 @@ interface ItemInterface {
 
     // Create abstract method for getting the type of class
     public abstract ItemType getItemType();
+
+    // Create abstract method for getting the id
+    public abstract int getId();
 }

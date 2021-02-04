@@ -1,9 +1,12 @@
-package src.AllClasses;
+package src.Logic;
 
 import java.util.ArrayList;
 import java.sql.*;
 
-public abstract class Item {
+public abstract class Item implements ItemInterface {
+
+    protected ItemType itemType;
+    protected int ID;
 
     // Get all values from any table in the database
     public static ArrayList<Integer> getRowsFromDB(ItemType tableName) {
@@ -40,7 +43,7 @@ public abstract class Item {
     // DELETE METHOD
     // update an already existing row in the supplier table with new information
     // based on the id passed into it
-    public static boolean deleteRowFromDb(int id, String tableName) {
+    public static void deleteRowFromDb(int id, String tableName) {
         try {
             Connection conn = DriverManager.getConnection(Secrets.getDBName(), Secrets.getUsername(), Secrets.getPass());
             String query = "";
@@ -57,10 +60,8 @@ public abstract class Item {
             stmt.execute();
             conn.close();
             System.out.println("User successfully deleted");
-            return true;
         } catch (SQLException e) {
             System.out.println(e);
-            return false;
         }
     }
 }

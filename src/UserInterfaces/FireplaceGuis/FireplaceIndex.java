@@ -1,11 +1,11 @@
-package src.GUIs.FireplaceGuis;
+package src.UserInterfaces.FireplaceGuis;
 
 import javax.swing.*;
 
-import src.AllClasses.*;
-
 import java.awt.*;
-import src.GUIs.*;
+
+import src.Logic.*;
+import src.UserInterfaces.*;
 
 import java.awt.image.BufferedImage;
 import java.io.File;

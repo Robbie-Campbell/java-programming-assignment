@@ -1,12 +1,12 @@
-package src.GUIs.FireplaceGuis;
+package src.UserInterfaces.FireplaceGuis;
 
 import javax.swing.*;
-import src.AllClasses.Fireplace;
-import src.AllClasses.*;
 
 import java.awt.*;
 import java.awt.event.*;
-import src.GUIs.*;
+
+import src.Logic.*;
+import src.UserInterfaces.*;
 
 public class InsertFireplace implements ActionListener {
 

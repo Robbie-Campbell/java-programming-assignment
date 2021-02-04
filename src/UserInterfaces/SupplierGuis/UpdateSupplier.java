@@ -1,16 +1,16 @@
-package src.GUIs.SupplierGuis;
+package src.UserInterfaces.SupplierGuis;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
-
-import src.AllClasses.Item;
-import src.AllClasses.Supplier;
 
 import java.awt.*;
 import java.awt.event.*;
 import java.awt.image.BufferedImage;
 
-import src.GUIs.*;
+import src.Logic.Item;
+import src.Logic.Supplier;
+import src.UserInterfaces.*;
+
 import java.io.File;
 import java.io.IOException;
 
@@ -34,7 +34,7 @@ public class UpdateSupplier implements ActionListener {
         mainFont = new Font("SansSerif", Font.BOLD, 18);
 
         // Extend the navbar
-        supplierID = supplier.getID();
+        supplierID = supplier.getId();
         container = new GUIContainer();
         container.frame.setTitle("Update a Supplier");
         container.frame.setBounds(100, 100, 900, 800);
@@ -48,7 +48,7 @@ public class UpdateSupplier implements ActionListener {
                 GridBagConstraints.BOTH, 10);
 
         // Get all of the information of the supplier
-        String[] selectedSupplier = new Supplier().getFromDB(supplier.getID()).getAllInfo();
+        String[] selectedSupplier = new Supplier().getFromDB(supplier.getId()).getAllInfo();
 
         // Tell the user which supplier they are updating
         showSupplierForUpdate = new JLabel("UPDATING INFORMATION FOR SUPPLIER: " + selectedSupplier[0]);

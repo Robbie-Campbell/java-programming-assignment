@@ -1,13 +1,13 @@
-package src.GUIs.SupplierGuis;
+package src.UserInterfaces.SupplierGuis;
 
 import javax.swing.*;
 
-import src.AllClasses.Item;
-import src.AllClasses.Supplier;
-
 import java.awt.*;
 import java.awt.event.*;
-import src.GUIs.*;
+
+import src.Logic.Item;
+import src.Logic.Supplier;
+import src.UserInterfaces.*;
 
 import java.awt.image.BufferedImage;
 import java.io.File;

@@ -1,12 +1,12 @@
-package src.GUIs.SupplierGuis;
+package src.UserInterfaces.SupplierGuis;
 
 import javax.swing.*;
 
-import src.AllClasses.Supplier;
-
 import java.awt.*;
 import java.awt.event.*;
-import src.GUIs.*;
+
+import src.Logic.Supplier;
+import src.UserInterfaces.*;
 
 public class InsertSupplier implements ActionListener {
 

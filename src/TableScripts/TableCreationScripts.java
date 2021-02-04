@@ -1,4 +1,4 @@
-package src.DatabaseInteractions;
+package src.TableScripts;
 
 /*
 Author: Robbie Campbell
@@ -8,12 +8,13 @@ This class offers a list of all of the scripts used to make the database, these 
 */
 
 import java.sql.*;
-import src.AllClasses.*;
+
+import src.Logic.*;
 
 public class TableCreationScripts {
 
     // Creates the supplier table in the database
-    public static boolean createSupplierTable() {
+    public static void createSupplierTable() {
         try {
             Connection conn = DriverManager.getConnection(Secrets.getDBName(), Secrets.getUsername(),
                     Secrets.getPass());
@@ -26,15 +27,13 @@ public class TableCreationScripts {
                     + "PRIMARY KEY (`supplier_id`)); ";
             stat.executeUpdate(query);
             conn.close();
-            return true;
         } catch (Exception e) {
             System.out.println(e);
-            return false;
         }
     }
 
     // Create the table fireplace table in the database
-    public static boolean createFireplaceTable() {
+    public static void createFireplaceTable() {
         try {
             Connection conn = DriverManager.getConnection(Secrets.getDBName(), Secrets.getUsername(),
                     Secrets.getPass());
@@ -47,10 +46,8 @@ public class TableCreationScripts {
                     + "FOREIGN KEY (supplier_id) REFERENCES supplier(supplier_id) ON DELETE CASCADE);";
             stat.executeUpdate(query);
             conn.close();
-            return true;
         } catch (Exception e) {
             System.out.println(e);
-            return false;
         }
     }
 }
