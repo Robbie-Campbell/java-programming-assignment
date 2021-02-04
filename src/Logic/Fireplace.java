@@ -163,7 +163,7 @@ public class Fireplace extends Item {
 
     // Set the finish of the fireplace
     public void setFinish(String newFinish)
-    {+setFinish
+    {
         this.finish = newFinish;
     }
 
