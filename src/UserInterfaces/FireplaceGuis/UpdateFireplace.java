@@ -1,5 +1,13 @@
 package src.UserInterfaces.FireplaceGuis;
 
+/*
+Author: Robbie Campbell
+Date: 04/02/2021
+Description:
+This class allows the user to update the information about one of the fireplaces, they can also delete the fireplace
+from the database from here
+*/
+
 import javax.imageio.ImageIO;
 import javax.swing.*;
 
@@ -226,7 +234,7 @@ public class UpdateFireplace implements ActionListener {
 
             // Confirm the deletion
             if (result == JOptionPane.YES_OPTION) {
-                Item.deleteRowFromDb(fireplaceID, "fireplace");
+                Item.deleteRowFromDb(fireplaceID, new Fireplace().getItemType());
                 JOptionPane.showMessageDialog(container.frame, "Successfully Deleted Fireplace from Database");
                 container.frame.dispose();
                 new FireplaceIndex();

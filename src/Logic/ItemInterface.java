@@ -1,5 +1,12 @@
 package src.Logic;
 
+/*
+Author: Robbie Campbell
+Date: 04/02/2021
+Description:
+This is the interface that determines what methods need to be defined in all item classes
+*/
+
 interface ItemInterface {
     
     // Create abstract method for insertion to be overriden

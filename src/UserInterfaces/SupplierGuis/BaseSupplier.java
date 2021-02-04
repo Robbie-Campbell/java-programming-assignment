@@ -1,5 +1,12 @@
 package src.UserInterfaces.SupplierGuis;
 
+/*
+Author: Robbie Campbell
+Date: 04/02/2021
+Description:
+This is the Supplier directory, From here the user can decide which screen to open up from here
+*/
+
 import javax.swing.*;
 
 import src.UserInterfaces.*;

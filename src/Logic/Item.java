@@ -1,5 +1,12 @@
 package src.Logic;
 
+/*
+Author: Robbie Campbell
+Date: 04/02/2021
+Description:
+This is the superclass that contains the shared attriubutes and functions of the Supplier and Fireplace classes
+*/
+
 import java.util.ArrayList;
 import java.sql.*;
 
@@ -43,23 +50,26 @@ public abstract class Item implements ItemInterface {
     // DELETE METHOD
     // update an already existing row in the supplier table with new information
     // based on the id passed into it
-    public static void deleteRowFromDb(int id, String tableName) {
+    public static void deleteRowFromDb(int id, ItemType tableName) {
         try {
             Connection conn = DriverManager.getConnection(Secrets.getDBName(), Secrets.getUsername(), Secrets.getPass());
             String query = "";
-            if (tableName.equals("supplier"))
+
+            // Get the table name from the parameter
+            if (tableName.equals(ItemType.SUPPLIER))
             {
                 query = "DELETE FROM supplier where supplier_id = ?";
             }
-            else if (tableName.equals("fireplace"))
+            else if (tableName.equals(ItemType.FIREPLACE))
             {
                 query = "DELETE FROM fireplace where fireplace_id = ?";
             }
+
+            // Create statement and delete from the database
             PreparedStatement stmt = conn.prepareStatement(query);
             stmt.setInt(1, id);
             stmt.execute();
             conn.close();
-            System.out.println("User successfully deleted");
         } catch (SQLException e) {
             System.out.println(e);
         }

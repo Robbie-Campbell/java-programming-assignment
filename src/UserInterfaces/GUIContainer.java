@@ -1,5 +1,13 @@
 package src.UserInterfaces;
 
+/*
+Author: Robbie Campbell
+Date: 04/02/2021
+Description:
+This class is the main navbar of the application that will be visible on each of the pages that allows the user to return
+to the base directories of the supplier and fireplace guis
+*/
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;

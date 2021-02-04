@@ -7,7 +7,6 @@ Description:
 This class contains all of the information for a supplier, it also contains the methods needed to return the private variables in the database class
 */
 
-
 import java.sql.*;
 
 public class Supplier extends Item {
@@ -40,11 +39,10 @@ public class Supplier extends Item {
         this.imagePath = supplierImage;
     }
 
-        // Constructor for getting db info
+    // OVERRIDEN CONSTRUCTOR FOR METHOD CALLS
     public Supplier(){};
 
     // GETTER METHODS FOR EACH OF THE PRIVATE VARIABLES
-
     // Get the ID of the supplier
     @Override
     public int getId()
@@ -108,7 +106,6 @@ public class Supplier extends Item {
     }
 
     // SETTER METHODS FOR EACH OF THE PRIVATE VARIABLES
-
     // Set the business name of the supplier
     public void setBusinessName(String newBusinessName)
     {

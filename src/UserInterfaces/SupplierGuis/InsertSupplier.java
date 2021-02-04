@@ -1,5 +1,12 @@
 package src.UserInterfaces.SupplierGuis;
 
+/*
+Author: Robbie Campbell
+Date: 04/02/2021
+Description:
+This class allows the user to insert a new supplier into the database
+*/
+
 import javax.swing.*;
 
 import java.awt.*;

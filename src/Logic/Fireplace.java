@@ -4,7 +4,7 @@ package src.Logic;
 Author: Robbie Campbell
 Date: 14/01/2021
 Description:
-The class which stores all of the information for the fireplace class, including the getter methouds for the private variables
+The class which stores all of the information for the fireplace class, including encapsulation of the variables
 */
 
 import java.sql.*;

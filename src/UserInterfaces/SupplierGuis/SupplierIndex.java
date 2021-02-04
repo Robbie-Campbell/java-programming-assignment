@@ -1,5 +1,12 @@
 package src.UserInterfaces.SupplierGuis;
 
+/*
+Author: Robbie Campbell
+Date: 04/02/2021
+Description:
+This class displays all of the suppliers in the database and allows the user to update information about a single one
+*/
+
 import javax.swing.*;
 
 import java.awt.*;

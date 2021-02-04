@@ -1,5 +1,12 @@
 package src.UserInterfaces.FireplaceGuis;
 
+/*
+Author: Robbie Campbell
+Date: 04/02/2021
+Description:
+This class displays all of the fireplaces in the database and allows the user to read into one or update information about a single one
+*/
+
 import javax.swing.*;
 
 import java.awt.*;

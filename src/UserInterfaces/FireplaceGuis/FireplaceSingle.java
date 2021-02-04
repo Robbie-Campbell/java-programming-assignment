@@ -1,5 +1,12 @@
 package src.UserInterfaces.FireplaceGuis;
 
+/*
+Author: Robbie Campbell
+Date: 04/02/2021
+Description:
+This class reveals all of the information from one of the fireplaces, it also allows the user to update the stock level of the fireplace
+*/
+
 import javax.swing.*;
 
 import java.awt.*;

@@ -1,5 +1,12 @@
 package src.UserInterfaces;
 
+/*
+Author: Robbie Campbell
+Date: 04/02/2021
+Description:
+This class contains the static functions neccessary for the some gui components on more than one page
+*/
+
 import java.awt.*;
 import java.awt.image.BufferedImage;
 

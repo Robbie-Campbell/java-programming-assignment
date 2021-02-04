@@ -1,5 +1,12 @@
 package src.UserInterfaces;
 
+/*
+Author: Robbie Campbell
+Date: 04/02/2021
+Description:
+This is the base directory of the application which contains the navbar to open the fireplace and supplier dirs
+*/
+
 import javax.swing.*;
 import java.awt.*;
 import javax.imageio.ImageIO;

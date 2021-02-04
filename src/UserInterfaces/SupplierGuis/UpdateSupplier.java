@@ -1,5 +1,13 @@
 package src.UserInterfaces.SupplierGuis;
 
+/*
+Author: Robbie Campbell
+Date: 04/02/2021
+Description:
+This class allows the user to update the information about one supplier, including the image and they can also delete a supplier
+from the database
+*/
+
 import javax.imageio.ImageIO;
 import javax.swing.*;
 
@@ -211,7 +219,7 @@ public class UpdateSupplier implements ActionListener {
 
             // Confirm the deletion
             if (result == JOptionPane.YES_OPTION) {
-                Item.deleteRowFromDb(supplierID, "supplier");
+                Item.deleteRowFromDb(supplierID, new Supplier().getItemType());
                 JOptionPane.showMessageDialog(container.frame, "Successfully Deleted Supplier from Database");
                 container.frame.dispose();
                 new SupplierIndex();
