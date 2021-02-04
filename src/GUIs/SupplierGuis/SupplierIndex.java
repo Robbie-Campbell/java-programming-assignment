@@ -2,7 +2,8 @@ package src.GUIs.SupplierGuis;
 
 import javax.swing.*;
 
-import src.DatabaseInteractions.StaticDatabaseMethods;
+import src.AllClasses.Item;
+import src.AllClasses.Supplier;
 
 import java.awt.*;
 import java.awt.event.*;
@@ -40,7 +41,7 @@ public class SupplierIndex {
         int index = 0;
 
         // Loop through all of the supplier ids in the database and display them to the user
-        for (int i : StaticDatabaseMethods.getRowsFromDB("supplier"))
+        for (int i : Item.getRowsFromDB("supplier"))
         {
 
             // Create a panel for each of the suppliers information
@@ -48,7 +49,7 @@ public class SupplierIndex {
             displayPanel.setBorder(container.raisedBorder);
 
             // Get the supplier information from the database in a format for displaying on labels
-            String[] selected = StaticDatabaseMethods.getSupplierFromDB(i).getAllInfo();
+            String[] selected = new Supplier().getFromDB(i).getAllInfo();
 
             // Resize the image for display
             try{
@@ -100,7 +101,7 @@ public class SupplierIndex {
                 public void actionPerformed(ActionEvent e)
                 {
                     // Create an instance of the new update supplier class
-                    new UpdateSupplier(StaticDatabaseMethods.getSupplierFromDB(i));
+                    new UpdateSupplier(new Supplier().getFromDB(i));
                     container.frame.dispose();
                 }
             });

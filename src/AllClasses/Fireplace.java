@@ -8,10 +8,11 @@ The class which stores all of the information for the fireplace class, including
 */
 
 import java.sql.*;
-import src.DatabaseInteractions.StaticDatabaseMethods;
 
-public class Fireplace {
+public class Fireplace extends Item{
 
+
+    private ItemType itemType = ItemType.FIREPLACE;
     private String description, itemName, image, style, finish;
     private int price, stock, supplier, ID;
 
@@ -41,6 +42,9 @@ public class Fireplace {
         this.style = style;
         this.finish = finish;
     }
+
+    // Constructor for getting db info
+    public Fireplace(){};
 
     // GETTER METHODS FOR THE PRIVATE VARIABLES
 
@@ -99,10 +103,17 @@ public class Fireplace {
     }
 
     // This function returns all information in the database about this object
+    @Override
     public String[] getAllInfo()
     {
         return new String[]{String.valueOf(this.ID), String.valueOf(this.supplier), this.itemName, String.valueOf(this.price), 
             String.valueOf(this.stock), this.description, this.image, this.style, this.finish};
+    }
+
+    // Get the itemtype of this class
+    @Override
+    public ItemType getItemType() {
+        return this.itemType;
     }
 
     // SETTER METHODS FOR THE PRIVATE VARIABLES
@@ -164,9 +175,10 @@ public class Fireplace {
 
     // CREATE METHOD
     // Inserts a new supplier into the database
-    public void insertFireplaceIntoDB() {
+    @Override
+    public void insertIntoDB() {
         try {
-            Connection conn = DriverManager.getConnection(StaticDatabaseMethods.getDBName(), StaticDatabaseMethods.getUsername(), StaticDatabaseMethods.getPass());
+            Connection conn = DriverManager.getConnection(Secrets.getDBName(), Secrets.getUsername(), Secrets.getPass());
             String query = " insert into fireplace (supplier_id, item_name, price, stock, description, image, style, finish)" + " values (?, ?, ?, ?, ?, ?, ?, ?)";
             PreparedStatement stmt = conn.prepareStatement(query);
             stmt.setInt(1, this.supplier);
@@ -187,9 +199,10 @@ public class Fireplace {
     // UPDATE METHODS
     // update an already existing row in the Fireplace table with new information
     // based on the id passed into it
+    @Override
     public void updateRowInDB() {
         try {
-            Connection conn = DriverManager.getConnection(StaticDatabaseMethods.getDBName(), StaticDatabaseMethods.getUsername(), StaticDatabaseMethods.getPass());
+            Connection conn = DriverManager.getConnection(Secrets.getDBName(), Secrets.getUsername(), Secrets.getPass());
             String query = "UPDATE fireplace SET supplier_id = ?, item_name = ?, price = ?, stock = ?, description = ?, image = ?, style = ?, finish = ? where fireplace_id = ?";
             PreparedStatement stmt = conn.prepareStatement(query);
             stmt.setInt(1, this.supplier);
@@ -211,7 +224,7 @@ public class Fireplace {
     // Update the stock of a given fireplace
     public void updateStockLevel() {
         try {
-            Connection conn = DriverManager.getConnection(StaticDatabaseMethods.getDBName(), StaticDatabaseMethods.getUsername(), StaticDatabaseMethods.getPass());
+            Connection conn = DriverManager.getConnection(Secrets.getDBName(), Secrets.getUsername(), Secrets.getPass());
             String query = "UPDATE fireplace SET stock = ? WHERE fireplace_id = ?";
             PreparedStatement stmt = conn.prepareStatement(query);
             stmt.setInt(1, this.stock);
@@ -221,6 +234,33 @@ public class Fireplace {
         }
         catch (SQLException ex){
             ex.printStackTrace();
+        }
+    }
+
+    // Connect with the database and select a single fireplace based on id, return it as the Fireplace class
+    @Override
+    public Fireplace getFromDB(int id) {
+        try {
+            
+            // Create a fireplace pointer
+            Fireplace wantedFireplace = null;
+
+            // Create the database connection and prepare the statement for execution
+            Connection conn = DriverManager.getConnection(Secrets.getDBName(), Secrets.getUsername(), Secrets.getPass());
+            PreparedStatement stat = conn.prepareStatement("select * from fireplace where fireplace_id = ?");
+            stat.setInt(1, id);
+
+            // Get all of the information about one of the fireplaces and store it in a fireplace object
+            ResultSet rs = stat.executeQuery();
+            while (rs.next()) {
+                wantedFireplace = new Fireplace(rs.getInt("fireplace_id"), rs.getInt("supplier_id"), rs.getString("item_name"), 
+                rs.getInt("price"), rs.getInt("stock"), rs.getString("image"), rs.getString("description"), rs.getString("style"), rs.getString("finish"));
+            }
+            conn.close();
+            return wantedFireplace;
+        } catch (SQLException e) {
+            System.out.println(e);
+            return null;
         }
     }
 

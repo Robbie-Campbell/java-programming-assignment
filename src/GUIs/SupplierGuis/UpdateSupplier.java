@@ -3,8 +3,8 @@ package src.GUIs.SupplierGuis;
 import javax.imageio.ImageIO;
 import javax.swing.*;
 
+import src.AllClasses.Item;
 import src.AllClasses.Supplier;
-import src.DatabaseInteractions.StaticDatabaseMethods;
 
 import java.awt.*;
 import java.awt.event.*;
@@ -48,7 +48,7 @@ public class UpdateSupplier implements ActionListener {
                 GridBagConstraints.BOTH, 10);
 
         // Get all of the information of the supplier
-        String[] selectedSupplier = StaticDatabaseMethods.getSupplierFromDB(supplier.getID()).getAllInfo();
+        String[] selectedSupplier = new Supplier().getFromDB(supplier.getID()).getAllInfo();
 
         // Tell the user which supplier they are updating
         showSupplierForUpdate = new JLabel("UPDATING INFORMATION FOR SUPPLIER: " + selectedSupplier[0]);
@@ -164,7 +164,7 @@ public class UpdateSupplier implements ActionListener {
 
             // Create an instance of the supplier class and set all supplier information
             // from textboxes
-            Supplier update = StaticDatabaseMethods.getSupplierFromDB(supplierID);
+            Supplier update = new Supplier().getFromDB(supplierID);
             update.setBusinessName(businessNameInput.getText());
             update.setCollectionName(collectionNameInput.getText());
             update.setName(nameInput.getText());
@@ -211,7 +211,7 @@ public class UpdateSupplier implements ActionListener {
 
             // Confirm the deletion
             if (result == JOptionPane.YES_OPTION) {
-                StaticDatabaseMethods.deleteRowFromDb(supplierID, "supplier");
+                Item.deleteRowFromDb(supplierID, "supplier");
                 JOptionPane.showMessageDialog(container.frame, "Successfully Deleted Supplier from Database");
                 container.frame.dispose();
                 new SupplierIndex();
@@ -227,7 +227,7 @@ public class UpdateSupplier implements ActionListener {
         if (e.getSource() == updateImage) {
 
             // Create a supplier object to update
-            Supplier update = StaticDatabaseMethods.getSupplierFromDB(supplierID);
+            Supplier update = new Supplier().getFromDB(supplierID);
 
             // Open a file directory and set the default location to home
             final JFileChooser chooseImage = new JFileChooser();

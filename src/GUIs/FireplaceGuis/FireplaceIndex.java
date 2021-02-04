@@ -2,7 +2,7 @@ package src.GUIs.FireplaceGuis;
 
 import javax.swing.*;
 
-import src.DatabaseInteractions.StaticDatabaseMethods;
+import src.AllClasses.*;
 
 import java.awt.*;
 import src.GUIs.*;
@@ -42,7 +42,7 @@ public class FireplaceIndex {
         int nextRow = 0;
 
         // Loop through all of the fireplace ids in the database and display them to the user
-        for (int i : StaticDatabaseMethods.getRowsFromDB("fireplace"))
+        for (int i : Item.getRowsFromDB("fireplace"))
         {
 
             // Create a panel for each of the fireplaces information
@@ -50,7 +50,7 @@ public class FireplaceIndex {
             displayPanel.setBorder(container.raisedBorder);
 
             // Get the fireplace information from the database in a format for displaying on labels
-            String[] selected = StaticDatabaseMethods.getFireplaceFromDB(i).getAllInfo();
+            String[] selected = new Fireplace().getFromDB(i).getAllInfo();
 
             // Resize the image for display
             try{
@@ -72,7 +72,7 @@ public class FireplaceIndex {
             }
 
             // Set all label text then place in descending order onto the panel
-            businessName = new JLabel("Supplier Name: " + StaticDatabaseMethods.getSupplierFromDB(Integer.parseInt(selected[1])).getBusinessName());
+            businessName = new JLabel("Supplier Name: " + new Supplier().getFromDB(Integer.parseInt(selected[1])).getBusinessName());
             businessName.setFont(container.contentFont);
             fireplaceName = new JLabel("Fireplace Name: " + selected[2]);
             fireplaceName.setFont(container.contentFont);
@@ -95,7 +95,7 @@ public class FireplaceIndex {
                 public void actionPerformed(ActionEvent e)
                 {
                     // Create an instance of the new update supplier class
-                    new UpdateFireplace(StaticDatabaseMethods.getFireplaceFromDB(i));
+                    new UpdateFireplace(new Fireplace().getFromDB(i));
                     container.frame.dispose();
                 }
             });
@@ -109,7 +109,7 @@ public class FireplaceIndex {
             public void actionPerformed(ActionEvent e)
                 {
                     // Create an instance of the new update supplier class
-                    new FireplaceSingle(StaticDatabaseMethods.getFireplaceFromDB(i).getId());
+                    new FireplaceSingle(new Fireplace().getFromDB(i).getId());
                     container.frame.dispose();
                 }
             });

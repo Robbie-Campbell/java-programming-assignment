@@ -1,8 +1,5 @@
 package src;
 
-import src.AllClasses.Fireplace;
-import src.DatabaseInteractions.TableCreationScripts;
-
 /*
 Author: Robbie Campbell
 Date: 14/01/2021

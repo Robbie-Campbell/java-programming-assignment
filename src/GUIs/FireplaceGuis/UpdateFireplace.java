@@ -1,7 +1,8 @@
 package src.GUIs.FireplaceGuis;
 
 import src.AllClasses.Fireplace;
-import src.DatabaseInteractions.StaticDatabaseMethods;
+import src.AllClasses.Item;
+import src.AllClasses.Supplier;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -50,13 +51,13 @@ public class UpdateFireplace implements ActionListener {
                 GridBagConstraints.BOTH, 10);
 
         // Get all of the information of the fireplace
-        String[] selectedfireplace = StaticDatabaseMethods.getFireplaceFromDB(fireplace.getId()).getAllInfo();
+        String[] selectedfireplace = new Fireplace().getFromDB(fireplace.getId()).getAllInfo();
 
         // Create a list of usable supplier foreign keys
         businessNames = new JComboBox<>();
-        for (int supplierID : StaticDatabaseMethods.getRowsFromDB("supplier"))
+        for (int supplierID : Item.getRowsFromDB("supplier"))
         {
-            businessNames.addItem(String.format("%d: %s", supplierID, StaticDatabaseMethods.getSupplierFromDB(supplierID).getBusinessName()));
+            businessNames.addItem(String.format("%d: %s", supplierID, new Supplier().getFromDB(supplierID).getBusinessName()));
         }
         businessNames.setSelectedItem("");
         GUISuper.addComponent(updateInfoPanel, businessNames, 0, 1, 1, 1, GridBagConstraints.CENTER, GridBagConstraints.BOTH);
@@ -176,7 +177,7 @@ public class UpdateFireplace implements ActionListener {
 
             // Create an instance of the fireplace class and set all fireplace information
             // from textboxes
-            Fireplace update = StaticDatabaseMethods.getFireplaceFromDB(fireplaceID);
+            Fireplace update = new Fireplace().getFromDB(fireplaceID);
             update.setSupplierID(Integer.parseInt(businessNames.getSelectedItem().toString().split(":")[0]));
             update.setItemName(updateFireplaceNameInput.getText());
             update.setPrice(Integer.parseInt(priceUpdateInput.getText()));
@@ -192,13 +193,13 @@ public class UpdateFireplace implements ActionListener {
 
                 // Make the user confirm their decision to update the user
                 int result = JOptionPane.showConfirmDialog(container.frame,
-                        "Are you sure you want to update user: " + fireplaceID + "?", "Confirm Update",
+                        "Are you sure you want to update Fireplace: " + fireplaceID + "?", "Confirm Update",
                         JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
 
                 // Successfully complete the operation and inform the user
                 if (result == JOptionPane.YES_OPTION) {
                     update.updateRowInDB();
-                    JOptionPane.showMessageDialog(container.frame, "Successfully Updated User");
+                    JOptionPane.showMessageDialog(container.frame, "Successfully Updated Fireplace");
                     container.frame.dispose();
                     new FireplaceIndex();
                 }
@@ -220,13 +221,13 @@ public class UpdateFireplace implements ActionListener {
         if (e.getSource() == deleteFireplace) {
             // Make the user confirm their decision to delete the fireplace
             int result = JOptionPane.showConfirmDialog(container.frame,
-                    "Are you sure you want to delete fireplace: " + fireplaceID + "?", "Delete User",
+                    "Are you sure you want to delete fireplace: " + fireplaceID + "?", "Delete Fireplace",
                     JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
 
             // Confirm the deletion
             if (result == JOptionPane.YES_OPTION) {
-                StaticDatabaseMethods.deleteRowFromDb(fireplaceID, "fireplace");
-                JOptionPane.showMessageDialog(container.frame, "Successfully Deleted fireplace from Database");
+                Item.deleteRowFromDb(fireplaceID, "fireplace");
+                JOptionPane.showMessageDialog(container.frame, "Successfully Deleted Fireplace from Database");
                 container.frame.dispose();
                 new FireplaceIndex();
             }
@@ -241,7 +242,7 @@ public class UpdateFireplace implements ActionListener {
         if (e.getSource() == updateImage) {
 
             // Create a fireplace object to update
-            Fireplace update = StaticDatabaseMethods.getFireplaceFromDB(fireplaceID);
+            Fireplace update = new Fireplace().getFromDB(fireplaceID);
 
             // Open a file directory and set the default location to home
             final JFileChooser chooseImage = new JFileChooser();

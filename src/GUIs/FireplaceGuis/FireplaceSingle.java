@@ -3,7 +3,7 @@ package src.GUIs.FireplaceGuis;
 import javax.swing.*;
 
 import src.AllClasses.Fireplace;
-import src.DatabaseInteractions.StaticDatabaseMethods;
+import src.AllClasses.Supplier;
 
 import java.awt.*;
 import java.awt.event.*;
@@ -33,7 +33,7 @@ public class FireplaceSingle implements ActionListener {
         this.id = id;
 
         // Get all information about the given fireplace
-        selected = StaticDatabaseMethods.getFireplaceFromDB(this.id).getAllInfo();
+        selected = new Fireplace().getFromDB(this.id).getAllInfo();
 
         // Extend the navbar
         container = new GUIContainer();
@@ -68,7 +68,7 @@ public class FireplaceSingle implements ActionListener {
 
 
         // Set all label text 
-        businessName = new JLabel("Supplier Name: " + StaticDatabaseMethods.getSupplierFromDB(Integer.parseInt(selected[1])).getBusinessName());
+        businessName = new JLabel("Supplier Name: " + new Supplier().getFromDB(Integer.parseInt(selected[1])).getBusinessName());
         businessName.setFont(container.titleFont);
         fireplaceName = new JLabel("Fireplace Name: " + selected[2]);
         fireplaceName.setFont(container.contentFont);
@@ -143,7 +143,7 @@ public class FireplaceSingle implements ActionListener {
 
         if (e.getSource() == updateStock)
         {
-            Fireplace updateStock = StaticDatabaseMethods.getFireplaceFromDB(id);
+            Fireplace updateStock = new Fireplace().getFromDB(id);
             updateStock.setStock((int) stockTaken.getSelectedItem());
             updateStock.updateStockLevel();
             stockUpdateFrame.dispose();

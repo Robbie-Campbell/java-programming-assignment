@@ -9,10 +9,10 @@ This class contains all of the information for a supplier, it also contains the 
 
 
 import java.sql.*;
-import src.DatabaseInteractions.StaticDatabaseMethods;
 
-public class Supplier{
+public class Supplier extends Item{
 
+    private ItemType itemType = ItemType.SUPPLIER;
     private String location, name, contact, businessEmail, collectionName, businessName, imagePath;
     private int ID;
     
@@ -40,6 +40,9 @@ public class Supplier{
         this.businessEmail = businessEmail;
         this.imagePath = supplierImage;
     }
+
+        // Constructor for getting db info
+    public Supplier(){};
 
     // GETTER METHODS FOR EACH OF THE PRIVATE VARIABLES
 
@@ -92,9 +95,16 @@ public class Supplier{
     }
 
     // This function returns all information in the database about this object
+    @Override
     public String[] getAllInfo()
     {
         return new String[]{String.valueOf(this.ID), this.businessName, this.collectionName, this.name, this.location, this.contact, this.businessEmail, this.imagePath};
+    }
+
+    // Get the itemtype of this class
+    @Override
+    public ItemType getItemType() {
+        return this.itemType;
     }
 
     // SETTER METHODS FOR EACH OF THE PRIVATE VARIABLES
@@ -142,9 +152,10 @@ public class Supplier{
 
     // CREATE METHOD
     // Inserts a new supplier into the database
-    public boolean insertSupplierIntoDB() {
+    @Override
+    public void insertIntoDB() {
         try {
-            Connection conn = DriverManager.getConnection(StaticDatabaseMethods.getDBName(), StaticDatabaseMethods.getUsername(), StaticDatabaseMethods.getPass());
+            Connection conn = DriverManager.getConnection(Secrets.getDBName(), Secrets.getUsername(), Secrets.getPass());
             String query = " insert into supplier (business_name, collection_name, owner_name, location, contact, business_email, image) values (?, ?, ?, ?, ?, ?, ?)";
             PreparedStatement stmt = conn.prepareStatement(query);
             stmt.setString(1, this.businessName);
@@ -156,19 +167,18 @@ public class Supplier{
             stmt.setString(7, this.imagePath);
             stmt.execute();
             conn.close();
-            return true;
         } catch (SQLException e) {
             System.out.println(e);
-            return false;
         }
     }
 
     // UPDATE METHOD
     // update an already existing row in the supplier table with new information
     // based on the id passed into it
-    public boolean updateRowInDB() {
+    @Override
+    public void updateRowInDB() {
         try {
-            Connection conn = DriverManager.getConnection(StaticDatabaseMethods.getDBName(), StaticDatabaseMethods.getUsername(), StaticDatabaseMethods.getPass());
+            Connection conn = DriverManager.getConnection(Secrets.getDBName(), Secrets.getUsername(), Secrets.getPass());
             String query = "UPDATE supplier SET business_name = ?, collection_name = ?, owner_name = ?, location = ?, contact = ?, business_email = ?, image = ? where supplier_id = ?";
             PreparedStatement stmt = conn.prepareStatement(query);
             stmt.setString(1, this.businessName);
@@ -181,10 +191,35 @@ public class Supplier{
             stmt.setInt(8, this.ID);
             stmt.execute();
             conn.close();
-            return true;
         } catch (SQLException e) {
             System.out.println(e);
-            return false;
+        }
+    }
+
+    // Connect with the database and select a single supplier based on id, return it as the Supplier class
+    @Override
+    public Supplier getFromDB(int id) {
+        try {
+
+            // Create the database connection and make the statement
+            Supplier wantedSupplier = null;
+
+            // Connect to the database and prepare the statement for execution
+            Connection conn = DriverManager.getConnection(Secrets.getDBName(), Secrets.getUsername(), Secrets.getPass());
+            PreparedStatement stat = conn.prepareStatement("select * from supplier where supplier_id = ?");
+            stat.setInt(1, id);
+
+            // Get all of the information about one of the suppliers and store it in a supplier object
+            ResultSet rs = stat.executeQuery();
+            while (rs.next()) {
+                wantedSupplier = new Supplier(rs.getInt("supplier_id"), rs.getString("business_name"), rs.getString("collection_name"), rs.getString("owner_name"), 
+                rs.getString("location"), rs.getString("contact"), rs.getString("business_email"), rs.getString("image"));
+            }
+            conn.close();
+            return wantedSupplier;
+        } catch (SQLException e) {
+            System.out.println(e);
+            return null;
         }
     }
 }

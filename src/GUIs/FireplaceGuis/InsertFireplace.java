@@ -2,7 +2,7 @@ package src.GUIs.FireplaceGuis;
 
 import javax.swing.*;
 import src.AllClasses.Fireplace;
-import src.DatabaseInteractions.StaticDatabaseMethods;
+import src.AllClasses.*;
 
 import java.awt.*;
 import java.awt.event.*;
@@ -34,9 +34,9 @@ public class InsertFireplace implements ActionListener {
 
         // Create a list of usable supplier foreign keys
         businessNames = new JComboBox<>();
-        for (int supplierID : StaticDatabaseMethods.getRowsFromDB("supplier"))
+        for (int supplierID : Item.getRowsFromDB("supplier"))
         {
-            businessNames.addItem(String.format("%d: %s", supplierID, StaticDatabaseMethods.getSupplierFromDB(supplierID).getBusinessName()));
+            businessNames.addItem(String.format("%d: %s", supplierID, new Supplier().getFromDB(supplierID).getBusinessName()));
         }
         businessNames.setSelectedItem("");
         GUISuper.addComponent(insertFireplacePanel, businessNames, 0, 2, 1, 1, GridBagConstraints.CENTER, GridBagConstraints.BOTH);
@@ -100,10 +100,10 @@ public class InsertFireplace implements ActionListener {
                     // Inform the user of the success of the insert
                     if(result == JOptionPane.YES_OPTION)
                     {
-                    insert.insertFireplaceIntoDB();
-                    JOptionPane.showMessageDialog(container.frame, "Successfully Created Fireplace!");
-                    container.frame.dispose();
-                    new Home();
+                        insert.insertIntoDB();
+                        JOptionPane.showMessageDialog(container.frame, "Successfully Created Fireplace!");
+                        container.frame.dispose();
+                        new Home();
                     }
 
                     // Cancel the operation

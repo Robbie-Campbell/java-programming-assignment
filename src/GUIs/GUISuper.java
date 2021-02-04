@@ -3,7 +3,7 @@ package src.GUIs;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 
-public class GUISuper {
+public abstract class GUISuper {
 
     private static final Insets insets = new Insets(0, 0, 0, 0);
 

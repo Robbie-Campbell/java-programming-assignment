@@ -116,10 +116,10 @@ public class InsertSupplier implements ActionListener {
                 // Inform the user of the success of the insert
                 if(result == JOptionPane.YES_OPTION)
                 {
-                insert.insertSupplierIntoDB();
-                JOptionPane.showMessageDialog(container.frame, "Successfully Created Supplier!");
-                container.frame.dispose();
-                new Home();
+                        insert.insertIntoDB();
+                        JOptionPane.showMessageDialog(container.frame, "Successfully Created Supplier!");
+                        container.frame.dispose();
+                        new Home();
                 }
 
                 // Cancel the operation
