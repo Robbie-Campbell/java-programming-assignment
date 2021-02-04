@@ -60,7 +60,7 @@ public class UpdateSupplier implements ActionListener {
         image = new JLabel();
         File oldImage = new File(selectedSupplier[7]);
         try{
-                BufferedImage placeholder = ImageIO.read(oldImage);
+                placeholder = ImageIO.read(oldImage);
                 image.setIcon(new ImageIcon(placeholder));
         }
         catch (IOException ex)
@@ -234,7 +234,7 @@ public class UpdateSupplier implements ActionListener {
             chooseImage.setCurrentDirectory(new File(System.getProperty("user.home")));
 
             // On select run this
-            if (chooseImage.showOpenDialog(mainPanel) == JFileChooser.APPROVE_OPTION) {
+            if (chooseImage.showOpenDialog(updateImage) == JFileChooser.APPROVE_OPTION) {
                 try {
 
                     // Get the selected image from the folder
@@ -253,6 +253,7 @@ public class UpdateSupplier implements ActionListener {
                     // Save the image into a local directory
                     ImageIO.write(resizeImageJpg, "jpg", new File(newPath));
                     image.setIcon(new ImageIcon(resizeImageJpg));
+                    new SupplierIndex();
 
                 } catch (IOException ex) {
                     ex.printStackTrace();

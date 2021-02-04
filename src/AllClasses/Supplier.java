@@ -11,7 +11,7 @@ This class contains all of the information for a supplier, it also contains the 
 import java.sql.*;
 import src.DatabaseInteractions.StaticDatabaseMethods;
 
-public class Supplier {
+public class Supplier{
 
     private String location, name, contact, businessEmail, collectionName, businessName, imagePath;
     private int ID;

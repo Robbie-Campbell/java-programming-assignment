@@ -2,8 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="7f79002b-e2da-469a-ad82-5f5f1cc12fe0" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/AllClasses/Supplier.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/AllClasses/Supplier.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/GUIs/Home.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUIs/Home.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/GUIs/SupplierGuis/InsertSupplier.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUIs/SupplierGuis/InsertSupplier.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/GUIs/SupplierGuis/UpdateSupplier.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUIs/SupplierGuis/UpdateSupplier.java" afterDir="false" />
@@ -34,17 +32,22 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="node.js.detected.package.eslint" value="true" />
-    <property name="node.js.detected.package.tslint" value="true" />
-    <property name="node.js.path.for.package.eslint" value="project" />
-    <property name="node.js.path.for.package.tslint" value="project" />
-    <property name="node.js.selected.package.eslint" value="(autodetect)" />
-    <property name="node.js.selected.package.tslint" value="(autodetect)" />
   </component>
   <component name="RunManager">
     <configuration name="Fun" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="Fun" />
       <module name="FirstAttempt" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
+      <option name="arquillianRunConfiguration">
+        <value>
+          <option name="containerStateName" value="" />
+        </value>
+      </option>
+      <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -66,30 +69,11 @@
       <workItem from="1610657779659" duration="600000" />
       <workItem from="1610751690860" duration="181000" />
       <workItem from="1611075104127" duration="6000" />
-      <workItem from="1611330223627" duration="1456000" />
-      <workItem from="1612203285524" duration="611000" />
+      <workItem from="1611330223627" duration="398000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
-  </component>
-  <component name="WindowStateProjectService">
-    <state width="1877" height="282" key="GridCell.Tab.0.bottom" timestamp="1611335372349">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state width="1877" height="282" key="GridCell.Tab.0.bottom/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1611335372349" />
-    <state width="1877" height="282" key="GridCell.Tab.0.center" timestamp="1611335372349">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state width="1877" height="282" key="GridCell.Tab.0.center/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1611335372349" />
-    <state width="1877" height="282" key="GridCell.Tab.0.left" timestamp="1611335372349">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state width="1877" height="282" key="GridCell.Tab.0.left/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1611335372349" />
-    <state width="1877" height="282" key="GridCell.Tab.0.right" timestamp="1611335372349">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state width="1877" height="282" key="GridCell.Tab.0.right/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1611335372349" />
   </component>
 </project>

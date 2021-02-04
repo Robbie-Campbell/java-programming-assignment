@@ -31,7 +31,7 @@ public class InsertSupplier implements ActionListener {
         insertSupplierPanel.setBackground(new Color(230, 230, 230));
         GUISuper.addComponent(mainPanel, insertSupplierPanel, 0, 1, 1, 1, GridBagConstraints.CENTER, GridBagConstraints.BOTH, 20);
 
-        // Create name input area
+        // Create business name input area
         businessNamePrompt = new JLabel("Insert Business Name of Supplier");
         businessNamePrompt.setFont(container.contentFont);
         businessNameInput = new JTextField();
@@ -39,7 +39,7 @@ public class InsertSupplier implements ActionListener {
                 GridBagConstraints.BOTH);
         GUISuper.addComponent(insertSupplierPanel, businessNameInput, 0, 3, 1, 1, GridBagConstraints.CENTER, GridBagConstraints.BOTH);
 
-        // Create name input area
+        // Create collection name input area
         collectionNamePrompt = new JLabel("Insert Collection Name of Supplier");
         collectionNamePrompt.setFont(container.contentFont);
         collectionNameInput = new JTextField();
@@ -47,7 +47,7 @@ public class InsertSupplier implements ActionListener {
                 GridBagConstraints.BOTH);
         GUISuper.addComponent(insertSupplierPanel, collectionNameInput, 0, 5, 1, 1, GridBagConstraints.CENTER, GridBagConstraints.BOTH);
 
-        // Create name input area
+        // Create supplier name input area
         namePrompt = new JLabel("Insert Name of Supplier");
         namePrompt.setFont(container.contentFont);
         nameInput = new JTextField();
@@ -64,7 +64,7 @@ public class InsertSupplier implements ActionListener {
         GUISuper.addComponent(insertSupplierPanel, locationInput, 0, 9, 1, 1, GridBagConstraints.CENTER,
                 GridBagConstraints.BOTH);
 
-        // Create contact input area
+        // Create contact number input area
         contactPrompt = new JLabel("Insert Contact Number of Supplier");
         contactPrompt.setFont(container.contentFont);
         contactInput = new JTextField();
@@ -91,6 +91,7 @@ public class InsertSupplier implements ActionListener {
                 GridBagConstraints.BOTH);
         insertSupplier.addActionListener(this);
 
+        // Set the frame as vidsible
         container.frame.setVisible(true);
     }
 
