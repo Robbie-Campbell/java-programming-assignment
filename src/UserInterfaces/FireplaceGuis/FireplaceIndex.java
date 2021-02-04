@@ -125,6 +125,8 @@ public class FireplaceIndex {
             GUISuper.addComponent(displayPanel, select, 0, 5, 0, 1, GridBagConstraints.CENTER, GridBagConstraints.BOTH, 3);
             GUISuper.addComponent(displayPanel, update, 0, 6, 0, 1, GridBagConstraints.CENTER, GridBagConstraints.BOTH, 3);
             index++;
+
+            // Gridbag sets the rows
             if (index % 2 == 0)
             {
                 nextRow++;

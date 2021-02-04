@@ -47,7 +47,6 @@ public class Fireplace extends Item {
     public Fireplace(){};
 
     // GETTER METHODS FOR THE PRIVATE VARIABLES
-
     // Get the supplier ID
     @Override
     public int getId()
@@ -91,7 +90,7 @@ public class Fireplace extends Item {
         return this.style;
     }
 
-    // Get the path to the image for the fireplace
+    // Get the finish information of the fireplace
     public String getFinish()
     {
         return this.finish;
@@ -112,7 +111,6 @@ public class Fireplace extends Item {
     }
 
     // SETTER METHODS FOR THE PRIVATE VARIABLES
-
     // Set a new Supplier ID
     public void setSupplierID(int newSupplier)
     {

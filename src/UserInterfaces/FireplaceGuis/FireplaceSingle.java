@@ -91,6 +91,8 @@ public class FireplaceSingle implements ActionListener {
         descriptionPrompt.setFont(container.contentFont);
         descriptionArea = new JTextArea();
         descriptionArea.setFont(container.contentFont);
+
+        // If there is no description add a placeholder
         if (selected[5] == null)
         {
             descriptionArea.setText("No description available");
@@ -125,6 +127,7 @@ public class FireplaceSingle implements ActionListener {
     
     public void actionPerformed(ActionEvent e) {
 
+        // Create a new frame which allows the user to update the current stock levels of a given fireplace
         if (e.getSource() == update)
         {
             stockUpdateFrame = new JFrame("Stock taken");
@@ -148,6 +151,7 @@ public class FireplaceSingle implements ActionListener {
             stockUpdateFrame.setVisible(true);
         }
 
+        // Confirm the stock update
         if (e.getSource() == updateStock)
         {
             Fireplace updateStock = new Fireplace().getFromDB(id);
@@ -158,10 +162,5 @@ public class FireplaceSingle implements ActionListener {
             stock.setText("Stock: " + updateStock.getStock());
         }
 
-    }
-
-// Testing
-    public static void main(String[] args){
-        new FireplaceSingle(5);
     }
 }

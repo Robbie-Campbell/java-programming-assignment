@@ -4,7 +4,7 @@ package src.TableScripts;
 Author: Robbie Campbell
 Date: 14/01/2021
 Description:
-This class offers a list of all of the scripts used to make the database, these can be called from as a method to create each table in the database.
+This class offers a list of all of the scripts used to make the database, these can be called from as a method to create each table
 */
 
 import java.sql.*;
