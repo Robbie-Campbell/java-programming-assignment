@@ -25,7 +25,7 @@ public class UpdateSupplier implements ActionListener {
     private JButton updateSupplier, deleteSupplier, updateImage;
     private int supplierID;
     private Font mainFont;
-    private ImageIcon placeholder;
+    private BufferedImage placeholder;
 
     // CONSTRUCTOR METHOD
     public UpdateSupplier(Supplier supplier) {
@@ -56,10 +56,17 @@ public class UpdateSupplier implements ActionListener {
         GUISuper.addComponent(updateInfoPanel, showSupplierForUpdate, 0, 0, 2, 1, GridBagConstraints.CENTER,
                 GridBagConstraints.VERTICAL);
 
-        // Update image button
-        placeholder = new ImageIcon(selectedSupplier[7]);
+        // Set the image
         image = new JLabel();
-        image.setIcon(placeholder);
+        File oldImage = new File(selectedSupplier[7]);
+        try{
+                BufferedImage placeholder = ImageIO.read(oldImage);
+                image.setIcon(new ImageIcon(placeholder));
+        }
+        catch (IOException ex)
+        {
+                ex.printStackTrace();
+        }
         GUISuper.addComponent(updateInfoPanel, image, 1, 0, 1, 13, GridBagConstraints.CENTER,
                 GridBagConstraints.VERTICAL);
 
@@ -225,10 +232,9 @@ public class UpdateSupplier implements ActionListener {
             // Open a file directory and set the default location to home
             final JFileChooser chooseImage = new JFileChooser();
             chooseImage.setCurrentDirectory(new File(System.getProperty("user.home")));
-            int success = chooseImage.showOpenDialog(null);
 
             // On select run this
-            if (success == JFileChooser.APPROVE_OPTION) {
+            if (chooseImage.showOpenDialog(mainPanel) == JFileChooser.APPROVE_OPTION) {
                 try {
 
                     // Get the selected image from the folder
