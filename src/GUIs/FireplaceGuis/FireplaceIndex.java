@@ -42,7 +42,7 @@ public class FireplaceIndex {
         int nextRow = 0;
 
         // Loop through all of the fireplace ids in the database and display them to the user
-        for (int i : Item.getRowsFromDB("fireplace"))
+        for (int i : Item.getRowsFromDB(new Fireplace().getItemType()))
         {
 
             // Create a panel for each of the fireplaces information

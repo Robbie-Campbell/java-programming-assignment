@@ -41,7 +41,7 @@ public class SupplierIndex {
         int index = 0;
 
         // Loop through all of the supplier ids in the database and display them to the user
-        for (int i : Item.getRowsFromDB("supplier"))
+        for (int i : Item.getRowsFromDB(new Supplier().getItemType()))
         {
 
             // Create a panel for each of the suppliers information

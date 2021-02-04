@@ -9,7 +9,7 @@ The class which stores all of the information for the fireplace class, including
 
 import java.sql.*;
 
-public class Fireplace extends Item{
+public class Fireplace extends Item implements ItemInterface {
 
 
     private ItemType itemType = ItemType.FIREPLACE;

@@ -5,26 +5,8 @@ import java.sql.*;
 
 public abstract class Item {
 
-    // ABSTRACT METHODS
-    // Create abstract method for insertion to be overriden
-    public abstract void insertIntoDB();
-
-    // Create abstract method for updating to be written
-    public abstract void updateRowInDB();
-
-    // Create abstract method for retrieving supplier from db
-    public abstract Item getFromDB(int id);
-
-    // Create abstract method for returning all information
-    public abstract String[] getAllInfo();
-
-    // Create abstract method for getting the type of class
-    public abstract ItemType getItemType();
-
-    // Create abstract method for returning item type
-
     // Get all values from any table in the database
-    public static ArrayList<Integer> getRowsFromDB(String tableName) {
+    public static ArrayList<Integer> getRowsFromDB(ItemType tableName) {
         try {
 
             // Create an array list to store all of the information then make a db connection
@@ -34,11 +16,11 @@ public abstract class Item {
             ResultSet rs = null;
 
             // Determine which query to execute
-            if (tableName.equals("supplier"))
+            if (tableName.equals(ItemType.SUPPLIER))
             {
                 rs = stat.executeQuery("select supplier_id from supplier");
             }
-            else if (tableName.equals("fireplace"))
+            else if (tableName.equals(ItemType.FIREPLACE))
             {
                 rs = stat.executeQuery("select fireplace_id from fireplace");
             }

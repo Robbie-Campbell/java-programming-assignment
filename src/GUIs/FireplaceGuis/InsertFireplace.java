@@ -34,7 +34,7 @@ public class InsertFireplace implements ActionListener {
 
         // Create a list of usable supplier foreign keys
         businessNames = new JComboBox<>();
-        for (int supplierID : Item.getRowsFromDB("supplier"))
+        for (int supplierID : Item.getRowsFromDB(new Supplier().getItemType()))
         {
             businessNames.addItem(String.format("%d: %s", supplierID, new Supplier().getFromDB(supplierID).getBusinessName()));
         }

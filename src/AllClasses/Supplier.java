@@ -10,7 +10,7 @@ This class contains all of the information for a supplier, it also contains the 
 
 import java.sql.*;
 
-public class Supplier extends Item{
+public class Supplier extends Item implements ItemInterface {
 
     private ItemType itemType = ItemType.SUPPLIER;
     private String location, name, contact, businessEmail, collectionName, businessName, imagePath;
